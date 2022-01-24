@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss','../auth.style.scss']
 })
 export class LoginComponent implements OnInit {
 
@@ -13,20 +13,19 @@ export class LoginComponent implements OnInit {
     username: new FormControl(''),
     password: new FormControl('')
   });
+
   constructor(
     private router: Router
   ) { 
       
   }
 
-  get username(): AbstractControl {
-    return this.loginForm.get('username') as AbstractControl;
-  }
-  get password(): AbstractControl {
-    return this.loginForm.get('password') as AbstractControl;
+  ngOnInit(): void {
   }
 
-  ngOnInit(): void {
+  public goToRegister() : void {
+    console.log("hello");
+    this.router.navigate(['/auth/register']);
   }
 
   public login(): void {

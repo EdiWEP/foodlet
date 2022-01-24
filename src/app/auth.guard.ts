@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     const isAuthorized = localStorage.getItem('Role') === 'Admin';
     if(!isAuthorized) {
       console.error('Not authorized');
-      this.router.navigate(['/login']);
+      this.router.navigate(['/auth']);
     }
     return isAuthorized;
   }

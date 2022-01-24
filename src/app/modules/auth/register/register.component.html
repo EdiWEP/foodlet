@@ -1,1 +1,54 @@
-<p>register works!</p>
+<div class="container">
+    
+    <mat-card class="form-container">
+        <mat-toolbar  class="form-header">
+            <img class="logo" src="../../../../assets/images/foodletlogoTransparent.png">
+            
+        </mat-toolbar>
+
+        
+        <nav mat-tab-nav-bar dynamicHeight mat-stretch-tabs mat-align-tabs="center" animationDuration="200ms">
+            <a mat-tab-link (click)="goToLogin()" [active]=false >
+                Login
+            </a>
+            <a mat-tab-link [active]=true>
+                Register
+            </a>
+        </nav>
+        
+        <mat-card-content class="form-section"> 
+
+            <form [formGroup]="registerForm" class="form">
+                
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput required placeholder="Email" formControlName="email"/>
+                </mat-form-field>
+
+                
+                <mat-form-field appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input matInput required placeholder="Username" formControlName="username"/>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput required placeholder="Password" type="password" formControlName="password"/>
+                </mat-form-field>
+
+            </form>         
+            
+            <button mat-raised-button color="primary" (click)="register()">
+                Register
+            </button>
+            
+            <div class="message-section">
+                <p class="message">
+                        
+                </p>
+            </div>
+
+        </mat-card-content>
+
+    </mat-card>
+</div>
