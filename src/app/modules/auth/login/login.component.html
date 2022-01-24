@@ -1,29 +1,87 @@
 
 <div class="container">
-    <h1 class="title">Foodlet</h1>
-    <div class="form-container">
-        <div class="message-section">
-            <p class="message">
+    
+    <mat-card class="form-container">
+        <mat-toolbar  class="form-header">
+            <img class="logo" src="../../../../assets/images/foodletlogoTransparent.png">
+            
+        </mat-toolbar>
+
+        
+        <mat-tab-group dynamicHeight mat-stretch-tabs mat-align-tabs="center" animationDuration="200ms">
+            
+            <mat-tab label="Login" > 
                 
-            </p>
-        </div>
-        <div class="form-section">
-            <form [formGroup]="loginForm" class="form">
-                <mat-form-field appearance="outline">
-                    <mat-label>Username</mat-label>
-                    <input matInput placeholder="Username" formControlName="username"/>
-                </mat-form-field>
+                <mat-card-content class="form-section"> 
 
-                <mat-form-field appearance="outline">
-                    <mat-label>Password</mat-label>
-                    <input matInput placeholder="Password" type="password" formControlName="password"/>
-                </mat-form-field>
+                    <form [formGroup]="loginForm" class="form">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Username</mat-label>
+                            <input matInput placeholder="Username" formControlName="username"/>
+                        </mat-form-field>
 
-            </form>
-        </div>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input matInput placeholder="Password" type="password" formControlName="password"/>
+                        </mat-form-field>
 
-        <button mat-raised-button color="primary" (click)="login()">
-            Login
-        </button>
-    </div>
+                    </form>
+
+                    
+                    
+                    
+                    <button mat-raised-button color="primary" (click)="login()">
+                        Login
+                    </button>
+                    
+                    <div class="message-section">
+                        <p class="message">
+                              
+                        </p>
+                    </div>
+
+                </mat-card-content>
+            </mat-tab>
+
+            <mat-tab label="Register" > 
+                <mat-card-content class="form-section"> 
+
+                    <form [formGroup]="loginForm" class="form">
+                        
+                        <mat-form-field appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="Email"/>
+                        </mat-form-field>
+
+                        
+                        <mat-form-field appearance="outline">
+                            <mat-label>Username</mat-label>
+                            <input matInput placeholder="Username" formControlName="username"/>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input matInput placeholder="Password" type="password" formControlName="password"/>
+                        </mat-form-field>
+
+                    </form>
+
+                    
+                    
+                    
+                    <button mat-raised-button color="primary" (click)="login()">
+                        Register
+                    </button>
+                    
+                    <div class="message-section">
+                        <p class="message">
+                              
+                        </p>
+                    </div>
+
+                </mat-card-content>
+            </mat-tab>
+        </mat-tab-group>
+        
+    </mat-card>
 </div>
