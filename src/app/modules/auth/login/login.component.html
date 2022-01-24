@@ -1,0 +1,29 @@
+
+<div class="container">
+    <h1 class="title">Foodlet</h1>
+    <div class="form-container">
+        <div class="message-section">
+            <p class="message">
+                
+            </p>
+        </div>
+        <div class="form-section">
+            <form [formGroup]="loginForm" class="form">
+                <mat-form-field appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input matInput placeholder="Username" formControlName="username"/>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Password" type="password" formControlName="password"/>
+                </mat-form-field>
+
+            </form>
+        </div>
+
+        <button mat-raised-button color="primary" (click)="login()">
+            Login
+        </button>
+    </div>
+</div>
