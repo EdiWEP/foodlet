@@ -13,10 +13,10 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const isAuthorized = localStorage.getItem('Role') === 'Admin';
+    const isAuthorized = localStorage.getItem('Token') != null;
     if(!isAuthorized) {
       console.error('Not authorized');
-      this.router.navigate(['/auth']);
+      this.router.navigate(['']);
     }
     return isAuthorized;
   }

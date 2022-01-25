@@ -1,0 +1,52 @@
+<div class="container"> 
+
+
+
+    <mat-toolbar  class="header">
+        <img class="logo" src="../../../../assets/images/foodletlogoTransparent.png">
+        
+        <button mat-raised-button color="primary" (click)="logout()">Logout</button>    
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+    
+    <div class="main">
+        <mat-card class="sidenav">
+            
+            <a routerLink='ingredients'>
+                ingredients
+            </a>
+
+            <nav mat-tab-nav-bar  mat-align-tabs="center" animationDuration="200ms">
+
+                <a mat-tab-link [active]=true>
+                    Home
+                </a>
+                
+            </nav>
+            <nav mat-tab-nav-bar dynamicHeight mat-stretch-tabs mat-align-tabs="center" animationDuration="200ms">
+   
+                <a mat-tab-link [active]=false>
+                    Ingredients
+                </a>
+ 
+            </nav>
+            <nav mat-tab-nav-bar dynamicHeight mat-stretch-tabs mat-align-tabs="center" animationDuration="200ms">
+      
+                <a mat-tab-link [active]=false>
+                    Recipes
+                </a>
+        
+            </nav>
+
+        </mat-card>
+
+        
+        <div class="content" >
+            <mat-card>
+                <router-outlet ></router-outlet>
+            </mat-card>
+        </div>
+     
+    </div>
+
+</div>

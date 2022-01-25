@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,8 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { 
       
   }
@@ -29,8 +32,24 @@ export class LoginComponent implements OnInit {
   }
 
   public login(): void {
-    console.log(this.loginForm.value);
-    localStorage.setItem('Role', 'Admin');
-    this.router.navigate(['/main']);
+    this.authService.login(this.loginForm.value).subscribe(
+      {
+        next: (result) => {
+          console.log(result);
+          localStorage.setItem('Token', result.token);
+          localStorage.setItem('UserId', result.userId);
+          localStorage.setItem('Role', result.role);
+          this.router.navigate(['']);
+        },
+        error: (error) => {
+          if(error.status == 400) {
+            document.getElementById("message")!.innerText = "Incorrect email/username or password";
+          }
+          else {
+            document.getElementById("message")!.innerText = "An error occoured, please try again";
+          }
+        }
+      });
+    
   }
 }

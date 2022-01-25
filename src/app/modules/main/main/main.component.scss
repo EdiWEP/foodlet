@@ -1,0 +1,90 @@
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    mat-divider {
+        background-color: #673AB7;
+        height: 2px;
+    }
+}
+mat-toolbar {
+    background-color:slateblue;
+    height: 6.5%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 40% 10% 42% 7% 1%;
+    grid-template-rows: 1fr;
+
+    .logo {
+        display: grid;
+        grid-column: 2;
+        margin-left: 45%;
+        height: 90%;
+        
+    }
+    button {
+        display: grid;
+        grid-column: 4;
+        margin-left: 30%;
+        height: 60%;
+    }
+}
+
+.main {
+    
+    width: 100%;
+    height: 93.5%;
+    display: flex;
+    background-color: #fbfbfb;
+
+    justify-content: center;
+    align-items: center;
+    
+    .sidenav {
+        width: 16%;
+        height: 90%;
+        margin-left: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+     
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+
+            width: 80%;
+
+            a {
+                width: 100%;
+                font-size: 26px;
+                padding-top: 5px;
+            }
+        }
+    }
+
+    .content {
+        width: 85%;
+        height: 100%;
+        background-color: #fbfbfb;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        mat-card {
+            height: 88.5%;
+            border-radius: 8px;
+            width: 92%;
+        }
+        
+    }
+}
+
+.header {
+}
+

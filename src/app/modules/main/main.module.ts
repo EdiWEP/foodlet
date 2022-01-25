@@ -4,11 +4,17 @@ import { CommonModule } from '@angular/common';
 import { MainRoutingModule } from './main-routing.module';
 import { HomeComponent } from './home/home.component';
 import { MaterialModule } from '../material/material.module';
+import { IngredientsComponent } from './ingredients/ingredients.component';
+import { RecipesComponent } from './recipes/recipes.component';
+import { MainComponent } from './main/main.component';
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    IngredientsComponent,
+    RecipesComponent,
+    MainComponent
   ],
   imports: [
     CommonModule,

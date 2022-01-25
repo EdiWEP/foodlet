@@ -1,16 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { IngredientsComponent } from './ingredients/ingredients.component';
+import { MainComponent } from './main/main.component';
+import { RecipesComponent } from './recipes/recipes.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'main'
+    component: MainComponent,
+    children: [
+      {
+        path: 'ingredients',
+        component: IngredientsComponent
+      },
+      {
+        path: 'recipes',
+        component: RecipesComponent
+      },
+    ]
   },
-  {
-    path: 'main',
-    component: HomeComponent,
-  }
+  
 ];
 
 @NgModule({
