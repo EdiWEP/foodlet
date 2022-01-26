@@ -1,4 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.snackbar-container {
+
+    background-color:darkslateblue;
+    
+    color:#eac300;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 10px;
+    
+}
+
+:root {
+    --themepurple: #673AB7;
+}

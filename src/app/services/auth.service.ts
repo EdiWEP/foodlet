@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl : string = 'https://localhost:44386/api/authentication/'
+  private apiUrl : string = 'https://localhost:5001/api/authentication/'
 
   constructor(
     private http : HttpClient
@@ -34,5 +34,21 @@ export class AuthService {
   public register(formData : any) : Observable<any> {
 
     return this.http.post(this.apiUrl + 'register', formData, {responseType: 'text'});
+  }
+
+  public checkLogin() {
+    return this.http.get(this.apiUrl + 'check', {headers: this.getAuthHeaders()});
+  }
+
+  public deleteStorage() {
+    localStorage.removeItem('Role');
+    localStorage.removeItem('Token');
+    localStorage.removeItem('UserId');
+  }
+
+  public getAuthHeaders() : HttpHeaders {
+    const token = localStorage.getItem('Token');
+    var headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    return headers;
   }
 }

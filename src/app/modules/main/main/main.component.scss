@@ -15,7 +15,7 @@ mat-toolbar {
     height: 6.5%;
     width: 100%;
     display: grid;
-    grid-template-columns: 40% 10% 42% 7% 1%;
+    grid-template-columns: 40% 10% 42% 7em 1%;
     grid-template-rows: 1fr;
 
     .logo {
@@ -30,6 +30,8 @@ mat-toolbar {
         grid-column: 4;
         margin-left: 30%;
         height: 60%;
+        font-size: 20px;
+        text-align: center;
     }
 }
 
@@ -38,53 +40,104 @@ mat-toolbar {
     width: 100%;
     height: 93.5%;
     display: flex;
-    background-color: #fbfbfb;
+    background-color: whitesmoke;// #fff1dc;
 
     justify-content: center;
     align-items: center;
     
     .sidenav {
-        width: 16%;
-        height: 90%;
+        width: 20em;
+        height: 95%;
         margin-left: 30px;
         display: flex;
         flex-direction: column;
         align-items: center;
-     
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        padding: 0;
+        
+        .sidenav-toolbar {
+            
+            background-color: slateblue;
+            
+            border-top: 3px solid #673AB7;
+            border-left: 3px solid #673AB7;
+            border-right: 3px solid #673AB7;
+            border-bottom: 3px solid #673AB7;
 
-        nav {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+
+            display:flex;
+            justify-content: flex-end;
+            flex-direction: column;
+            align-items: center;
+            font-size: 33px;
+            font-weight: bold;
+            color: #ffb200;
+
+        }
+        .sidenav-button-container {
+
+            width: 18em;
+            height: 30%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            
-
-            width: 80%;
-
-            a {
-                width: 100%;
-                font-size: 26px;
-                padding-top: 5px;
+            justify-content: space-evenly;
+            .sidenav-button {
+                width: 230px;
+                color:rebeccapurple;
+                font-weight: bold;
+                height: 26%;
+                margin: 0;
+                padding: 0;
+                border: 4px solid rebeccapurple;
+                border-radius: 20px;
+                
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+                
+                text-align: center;
+                text-decoration: none;
+                font-size: 30px;
+                              
             }
+
+            .sidenav-button:hover {
+                background-color: slateblue;
+                border: 3px solid slateblue;
+                color: #ffb200;
+                font-size: 33px;
+                font-weight: bold;
+                transition-duration: 260ms;
+            }
+        }
+
+        mat-divider {
+            background-color: #673AB7;
+        height: 2px;
         }
     }
 
     .content {
         width: 85%;
         height: 100%;
-        background-color: #fbfbfb;
+        background-color: whitesmoke;
         display:flex;
         align-items: center;
         justify-content: center;
         mat-card {
-            height: 88.5%;
-            border-radius: 8px;
-            width: 92%;
+            height: 95%;
+            border-radius: 9px;
+            border:4px solid var(--themepurple);
+            width: 95%;
+            padding: 0;
         }
         
     }
 }
 
-.header {
-}
 

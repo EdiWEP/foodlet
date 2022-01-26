@@ -5,44 +5,46 @@
     <mat-toolbar  class="header">
         <img class="logo" src="../../../../assets/images/foodletlogoTransparent.png">
         
-        <button mat-raised-button color="primary" (click)="logout()">Logout</button>    
+        <div *ngIf="verifyLoggedIn(); then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>
+            <button mat-raised-button color="primary" (click)="logout()">Logout</button> 
+     
+        </ng-template>
+        <ng-template #elseBlock>
+            <button mat-raised-button color="primary" (click)="goToLogin()">Login</button>
+        </ng-template>
+           
     </mat-toolbar>
     <mat-divider></mat-divider>
     
     <div class="main">
-        <mat-card class="sidenav">
+        <mat-card class="sidenav mat-elevation-z7">
             
-            <a routerLink='ingredients'>
-                ingredients
-            </a>
-
-            <nav mat-tab-nav-bar  mat-align-tabs="center" animationDuration="200ms">
-
-                <a mat-tab-link [active]=true>
-                    Home
-                </a>
-                
-            </nav>
-            <nav mat-tab-nav-bar dynamicHeight mat-stretch-tabs mat-align-tabs="center" animationDuration="200ms">
-   
-                <a mat-tab-link [active]=false>
-                    Ingredients
-                </a>
- 
-            </nav>
-            <nav mat-tab-nav-bar dynamicHeight mat-stretch-tabs mat-align-tabs="center" animationDuration="200ms">
-      
-                <a mat-tab-link [active]=false>
-                    Recipes
-                </a>
-        
-            </nav>
+            <mat-toolbar class="sidenav-toolbar"> <p>Menu</p> </mat-toolbar>
+            
+                <div class="sidenav-button-container">
+                    
+                    <a routerLink='home' class="sidenav-button">
+                        Home 
+                    </a>
+                    
+                    <a routerLink='ingredients' class="sidenav-button">
+                        Ingredients
+                    </a>
+                    
+                    <a routerLink='recipes' class="sidenav-button">
+                        Recipes
+                    </a>
+                    
+                </div>
+            
+            
 
         </mat-card>
 
         
-        <div class="content" >
-            <mat-card>
+        <div class="content">
+            <mat-card class="mat-elevation-z15">
                 <router-outlet ></router-outlet>
             </mat-card>
         </div>

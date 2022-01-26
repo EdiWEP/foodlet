@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from 'src/app/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { MainComponent } from './main/main.component';
@@ -11,13 +12,23 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       {
+        path: 'home',
+        component: HomeComponent,
+        canActivate: [AuthGuard],
+        
+      },
+      {
         path: 'ingredients',
-        component: IngredientsComponent
+        component: IngredientsComponent,
+        canActivate: [AuthGuard],
+
       },
       {
         path: 'recipes',
-        component: RecipesComponent
+        component: RecipesComponent,
+        canActivate: [AuthGuard],
       },
+
     ]
   },
   

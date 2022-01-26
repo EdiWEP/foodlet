@@ -1,0 +1,148 @@
+.content-container {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    border-radius: 12px;
+
+    .content-header {
+        width: 100%;
+        height: 10%;
+        .content-header-toolbar {
+            background-color:slateblue;
+
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border-bottom: 4px solid var(--themepurple);
+            display: flex;
+            justify-content: flex-end;
+            p {
+                font-size: 45px;
+                font-weight: bolder;
+                padding-top: 5px;
+                margin-right: 40px;
+                color:rgb(70, 20, 105);
+                
+            }
+        }
+    }
+
+    .search-field {
+        width: 40%;
+        
+        display: flex;
+        justify-content: flex-start;
+        margin-left: 9%;
+        
+        mat-form-field {
+            width: 100%;
+            
+            
+        }
+    }
+    .table-container {
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        height: 80%;
+
+        .table {
+            width: 85%;
+            overflow: hidden;
+            border-top: 3px solid rebeccapurple;
+            border-left: 3px solid rebeccapurple;
+            border-right: 3px solid rebeccapurple;
+
+            .header-cell {
+
+                font-size: 22px;
+                color:#ffb200;
+            }
+
+            .header-cell-name {
+                text-align: center;
+            }
+
+            .name-cell {
+                display: flex;
+                
+                align-content: center;
+                .name-cell-buttons {
+                    display:flex;
+                    justify-content: space-between;
+                 
+                    
+                    :first-child {
+                        padding-top: 5px;
+                        padding-right: 8px;
+                        
+                    }
+
+                    :first-child:hover {
+                        color:red;
+                        transform: scale(1.25);
+                        transition-duration: 200ms;
+                        cursor: pointer;
+                    }
+
+                    :last-child:hover {
+                        color: #ffb200;
+                        transform: scale(1.25);
+                        transition-duration: 200ms;
+                        cursor: pointer;
+                    }
+                    
+                    :last-child{
+                        padding-top: 5px;
+                        padding-right:8px;
+                        padding-left: 8px;
+                        
+                    }
+                }
+
+                .button-divider {
+                    height: 45px;
+                }
+                
+
+                p {
+                    padding-left: 24px;
+                    padding-top: 8px;
+                }
+            }
+            
+            .header-row {
+                background-color: rebeccapurple;
+
+            }
+
+            .table-cell {
+                padding-top:3px;
+                font-size: 18px;
+                
+                .test {
+                    margin-left:50px
+                }
+            }
+
+            
+        }
+
+        .table-paginator {
+            width: 85%;
+            
+            border: 3px solid rebeccapurple;
+
+            border-radius: 4px;
+
+        }
+
+
+    }
+}

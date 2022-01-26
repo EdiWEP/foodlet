@@ -1,1 +1,70 @@
-<p>ingredients works!</p>
+<div class="content-container">
+
+    <div class="content-header">
+        <mat-toolbar class="content-header-toolbar">
+            <p>Ingredients</p>
+        </mat-toolbar>
+    </div>
+
+
+    <form class="search-field">
+        <mat-form-field appearance="outline" id="search" >
+
+            <mat-label>Search</mat-label>
+            <input type="search" class="search-bar" matInput (keyup)="search(filter.value)" placeholder="Search" #filter>
+            
+        <span matSuffix><mat-icon>search</mat-icon></span>
+        </mat-form-field>
+    </form>
+        
+    <div class="table-container ">
+        <table mat-table [dataSource]="ingredientsData" matSort (matSortChange)="doNothing($event)"class="table mat-elevation-z5">
+
+           
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef class="header-cell header-cell-name"> Name </th>
+                <td mat-cell *matCellDef="let element" class="table-cell"> 
+                    <div class="name-cell"> 
+                        <div class="name-cell-buttons">
+                            <mat-icon>delete</mat-icon>
+                            <mat-divider vertical class="button-divider"></mat-divider>
+                        
+                            <mat-icon>edit</mat-icon>
+                        </div>
+                        <mat-divider vertical class="button-divider"></mat-divider>
+                        <p>{{element.name}}</p> 
+                    </div>
+                </td>
+            </ng-container>
+          
+ 
+            <ng-container matColumnDef="calsperg" >
+              <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by calories" class="header-cell"> Calories </th>
+              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.calsperg)}} </td>
+            </ng-container>
+          
+  
+            <ng-container matColumnDef="carbs">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by carbs" class="header-cell"> Carbs </th>
+              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.carbs)}} </td>
+            </ng-container>
+          
+
+            <ng-container matColumnDef="protein">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by protein" class="header-cell"> Protein </th>
+              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.protein)}} </td>
+            </ng-container>
+          
+            
+            <ng-container matColumnDef="fat">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by fat" class="header-cell"> Fat </th>
+                <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.fat)}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row"></tr>
+          </table>
+          <mat-paginator class="table-paginator mat-elevation-z5" [pageSizeOptions]="[10]"></mat-paginator>
+          
+    </div>
+</div>

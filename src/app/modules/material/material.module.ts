@@ -8,7 +8,11 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTabsModule} from '@angular/material/tabs'; 
 import {MatSidenavModule} from '@angular/material/sidenav'; 
 import {MatDividerModule} from '@angular/material/divider'; 
-
+import {MatTableModule} from '@angular/material/table'; 
+import { MatSnackBarModule} from '@angular/material/snack-bar'; 
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatIconModule} from '@angular/material/icon'; 
+import { MatSortModule } from '@angular/material/sort';
 @NgModule({
   declarations: [],
   imports: [
@@ -21,6 +25,11 @@ import {MatDividerModule} from '@angular/material/divider';
     MatTabsModule,    
     MatSidenavModule,
     MatDividerModule,
+    MatTableModule,
+    MatSnackBarModule,
+    MatPaginatorModule,
+    MatIconModule,
+    MatSortModule,
 
   ],
   exports: [
@@ -32,6 +41,12 @@ import {MatDividerModule} from '@angular/material/divider';
     MatTabsModule,
     MatDividerModule,
     MatSidenavModule,
+    MatTableModule,
+    MatSnackBarModule,
+    MatPaginatorModule,
+    MatIconModule,
+    MatSortModule,
+        
   ]
 })
 export class MaterialModule { }
