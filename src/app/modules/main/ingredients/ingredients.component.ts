@@ -3,6 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { IngredientService } from 'src/app/services/ingredient.service';
 import {MatSort, Sort} from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import { IngredientDialogComponent } from '../ingredient-dialog/ingredient-dialog.component';
 
 @Component({
   selector: 'app-ingredients',
@@ -15,13 +17,13 @@ export class IngredientsComponent implements OnInit, AfterViewInit {
   public ingredientsData !: MatTableDataSource<Ingredient>;
   public displayedColumns = ['name', 'calsperg', 'carbs', 'protein', 'fat']
 
-  public multiplier: number = 100;
 
   @ViewChild(MatPaginator,{static: false}) paginator!: MatPaginator;
   @ViewChild(MatSort,{static: false}) sort!: MatSort;
 
   constructor(
-    private ingredientService : IngredientService
+    private ingredientService : IngredientService,
+    private dialog : MatDialog
   ) { 
 
   }
@@ -33,30 +35,49 @@ export class IngredientsComponent implements OnInit, AfterViewInit {
           this.ingredientsData = new MatTableDataSource<Ingredient>(result);
           this.ingredientsData.paginator = this.paginator;
           this.ingredientsData.sort = this.sort;
-          console.log(this.ingredientsData.sort);
         },
         error: (error) => {
           console.error(error);
         }
       }
     );
+
+    this.openAddDialog();
+    
   }
   
   ngAfterViewInit() {
   }
 
+  public openAddDialog() {
+    const dialogRef =
+    this.dialog.open(IngredientDialogComponent, 
+      {
+        width:"30vw", 
+        height:"65vh", 
+        data: {
+          buttonText: "Add",
+          titleText: "New Ingredient"
+        }
+      });
+    
+      dialogRef.afterClosed().subscribe( result => {
+        if(result == "success") {
+          //this.ingredientsData.data.push()
+        }
+      })
+  }
+  
   public search(input: string) {
     input.trim().toLowerCase();
     this.ingredientsData.filter = input;
   }
 
-  public computeNumber(value : number) {
-    return Math.ceil(value * this.multiplier);
+  public computeNumber(value : number, multiplier : number = 100) {
+    return Math.ceil(value * multiplier);
   }
  
-  public doNothing(x : Sort) {
-
-  }
+  
 }
 
 

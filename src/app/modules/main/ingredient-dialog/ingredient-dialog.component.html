@@ -1,0 +1,55 @@
+
+
+<div class="dialog-container">
+
+    <div class="dialog-title">
+        <p id="dialog-title-text">
+            {{data.titleText}}
+        </p>
+        
+    </div>
+
+    <mat-card class="form-section"> 
+        <p class="subtitle">
+            Enter values for 100g of ingredient:
+        </p>
+
+        <form [formGroup]="ingredientForm" class="form">
+            
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput required placeholder="Name" type="text" formControlName="name"/>
+            </mat-form-field>
+
+            
+            <mat-form-field appearance="outline">
+                <mat-label>Calories</mat-label>
+                <input matInput required placeholder="Per 100g" formControlName="calsperg"/>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Carbs</mat-label>
+                <input matInput required placeholder="Per 100g"  formControlName="carbs"/>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Protein</mat-label>
+                <input matInput required placeholder="Per 100g"  formControlName="protein"/>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Fat</mat-label>
+                <input matInput required placeholder="Per 100g" formControlName="fat"/>
+            </mat-form-field>
+        </form>         
+    
+    </mat-card>
+
+    <button mat-raised-button class="mat-elevation-z6"(click)="sendData()">
+        {{data.buttonText}}
+    </button>
+
+    <div class="message-section">  
+            {{message}}
+    </div>
+</div>

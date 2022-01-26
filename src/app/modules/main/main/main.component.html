@@ -3,7 +3,7 @@
 
 
     <mat-toolbar  class="header">
-        <img class="logo" src="../../../../assets/images/foodletlogoTransparent.png">
+        <img class="logo mat-elevation-z10" src="../../../../assets/images/foodletlogoTransparent.png">
         
         <div *ngIf="verifyLoggedIn(); then thenBlock else elseBlock"></div>
         <ng-template #thenBlock>
@@ -18,7 +18,7 @@
     <mat-divider></mat-divider>
     
     <div class="main">
-        <mat-card class="sidenav mat-elevation-z7">
+        <mat-card class="sidenav mat-elevation-z15">
             
             <mat-toolbar class="sidenav-toolbar"> <p>Menu</p> </mat-toolbar>
             

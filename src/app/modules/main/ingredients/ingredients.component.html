@@ -4,21 +4,30 @@
         <mat-toolbar class="content-header-toolbar">
             <p>Ingredients</p>
         </mat-toolbar>
+
+        <div class="search-add-container">
+            
+            <form class="search-field">
+                <mat-form-field appearance="outline" id="search" >
+        
+                    <mat-label>Search</mat-label>
+                    <input type="search" class="search-bar" matInput (keyup)="search(filter.value)" placeholder="Search" #filter>
+                    
+                <span matSuffix><mat-icon>search</mat-icon></span>
+                </mat-form-field>
+            </form>
+            
+            <button mat-raised-button (click)="openAddDialog()" class="add-button mat-elevation-z4" >
+                Add
+            </button>
+        </div>
     </div>
 
 
-    <form class="search-field">
-        <mat-form-field appearance="outline" id="search" >
-
-            <mat-label>Search</mat-label>
-            <input type="search" class="search-bar" matInput (keyup)="search(filter.value)" placeholder="Search" #filter>
-            
-        <span matSuffix><mat-icon>search</mat-icon></span>
-        </mat-form-field>
-    </form>
+    
         
     <div class="table-container ">
-        <table mat-table [dataSource]="ingredientsData" matSort (matSortChange)="doNothing($event)"class="table mat-elevation-z5">
+        <table mat-table [dataSource]="ingredientsData" matSort class="table mat-elevation-z5">
 
            
             <ng-container matColumnDef="name">
@@ -32,7 +41,7 @@
                             <mat-icon>edit</mat-icon>
                         </div>
                         <mat-divider vertical class="button-divider"></mat-divider>
-                        <p>{{element.name}}</p> 
+                        <p>{{element.name[0].toUpperCase() + element.name.substring(1)}}</p> 
                     </div>
                 </td>
             </ng-container>

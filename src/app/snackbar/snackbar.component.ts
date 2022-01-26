@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import {  MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-snackbar',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SnackbarComponent implements OnInit {
 
-  public message : string = "You are not logged in!";
-
-  constructor() { }
+  
+  constructor(
+    @Inject(MAT_SNACK_BAR_DATA) public message: string,
+  ) { 
+    
+  }
 
   ngOnInit(): void {
   }

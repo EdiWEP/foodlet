@@ -35,7 +35,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
             obs.next(true);
           } else {
               obs.next(false);
-              this.snackBar.openFromComponent(SnackbarComponent, { duration: 2500, panelClass: ['snackbar-container'] })
+              this.snackBar.openFromComponent(SnackbarComponent, { duration: 2500, panelClass: ['snackbar-basic'], data: "You are not logged in!" })
           }      
         }
       });
