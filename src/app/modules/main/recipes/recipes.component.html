@@ -1,1 +1,130 @@
-<p>recipes works!</p>
+<div class="content-container">
+
+    <div class="content-header">
+        <mat-toolbar class="content-header-toolbar">
+            <p>Recipes</p>
+        </mat-toolbar>
+
+        <div class="search-add-container">
+            
+            <form class="search-field">
+                <mat-form-field appearance="outline" id="search" >
+        
+                    <mat-label>Search</mat-label>
+                    <input type="search" class="search-bar" matInput (keyup)="search(filter.value)" placeholder="Search" #filter>
+                    
+                <span matSuffix><mat-icon>search</mat-icon></span>
+                </mat-form-field>
+            </form>
+            
+            <button mat-raised-button (click)="openAddDialog()" class="add-button mat-elevation-z10" >
+                Add
+            </button>
+        </div>
+    </div>
+
+    <div class="table-container ">
+        <table mat-table [dataSource]="recipesData" multiTemplateDataRows matSort class="table mat-elevation-z5">
+
+           
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef class="header-cell header-cell-name"> Name </th>
+                <td mat-cell *matCellDef="let element" class="table-cell"> 
+                    <div class="name-cell"> 
+                        <div *ngIf="checkSameId(element.userId); then thenBlock else elseBlock"></div>
+                        <ng-template #thenBlock>
+
+                            <div class="name-cell-buttons">
+                                
+                                <mat-icon (click)="openDeleteDialog(element.id)">delete</mat-icon>
+                                <mat-divider vertical class="button-divider"></mat-divider>
+                                <mat-icon (click)="openEditDialog(element)">edit</mat-icon>
+                                
+                            </div>
+                        </ng-template>
+                        <ng-template #elseBlock>
+                            <div class="no-buttons">
+                                <mat-icon>delete</mat-icon>
+                                <mat-divider vertical></mat-divider>
+                                <mat-icon>edit</mat-icon>
+                            </div>
+                        </ng-template>
+                        <mat-divider vertical class="button-divider"></mat-divider>
+                        <p>{{element.name[0].toUpperCase() + element.name.substring(1)}}</p> 
+                    </div>
+                </td>
+            </ng-container>
+          
+ 
+            <ng-container matColumnDef="calsperg" >
+              <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by calories" class="header-cell"> Calories </th>
+              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.calsperg) }} </td>
+            </ng-container>
+          
+  
+            <ng-container matColumnDef="carbs">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by carbs" class="header-cell"> Carbs </th>
+              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.carbs) +' g'}} </td>
+            </ng-container>
+          
+
+            <ng-container matColumnDef="protein">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by protein" class="header-cell"> Protein </th>
+              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.protein) +' g'}} </td>
+            </ng-container>
+          
+            
+            <ng-container matColumnDef="fat">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by fat" class="header-cell"> Fat </th>
+                <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.fat) +' g'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="servingSize">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by serving size" class="header-cell"> Portion </th>
+                <td mat-cell *matCellDef="let element" class="table-cell"> {{element.servingSize +' g'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="numberOfIngredients">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by no. of ingredients" class="header-cell"> Ingredients </th>
+                <td mat-cell *matCellDef="let element" class="table-cell"> {{element.numberOfIngredients}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="expandedDetail">
+                <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                    <div class="ingredient-table-container">
+
+                        <table mat-table [dataSource]="element.ingredients" class="ingredient-table mat-elevation-z5"
+                        [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                        
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef class="ingredient-header-cell"> Ingredient </th>
+                            <td mat-cell *matCellDef="let ingredient" class="ingredient-table-cell"> {{ingredient.name}} </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="grams">
+                            <th mat-header-cell *matHeaderCellDef class="ingredient-header-cell"> Grams </th>
+                            <td mat-cell *matCellDef="let ingredient" class="ingredient-table-cell"> {{ingredient.grams}} </td>
+                        </ng-container>
+                        
+                        <tr mat-header-row *matHeaderRowDef="ingredientDisplayedColumns sticky: true" class="ingredient-header-row" ></tr>
+                        <tr mat-row *matRowDef="let row; columns: ingredientDisplayedColumns" class="ingredient-table-row"> </tr>
+                    </table>
+                </div>
+                </td>
+              </ng-container>
+
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header-row" ></tr>
+            <tr mat-row *matRowDef="let element; columns: displayedColumns;" 
+                class="table-row"
+                [class.expanded-row]="expandedElement === element"
+                (click)="expandedElement = expandedElement === element ? null : element"
+            ></tr>
+
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="ingredients-table-row"></tr>
+          </table>
+          <mat-paginator class="table-paginator mat-elevation-z5" [pageSizeOptions]="[10]"></mat-paginator>
+          
+    </div>
+</div>

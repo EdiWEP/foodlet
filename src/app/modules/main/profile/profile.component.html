@@ -1,0 +1,46 @@
+<div class="content-container">
+
+    <div class="content-header">
+        <mat-toolbar class="content-header-toolbar">
+            <p>Your Profile</p>
+        </mat-toolbar>
+    </div>
+
+    <div class="profile">
+
+       <mat-card class="profile-container">
+           
+           
+           <mat-card class="profile-card">
+               <div class="image-container">
+                   <img src="../../../../assets/images/profilepicture.png">
+                </div>
+                
+            </mat-card>
+
+            <div class="info-button-container">
+                <mat-card class="info-card">
+                    <mat-toolbar class="fullname-toolbar">
+                        <p class="fullname">
+                            {{data.fullName}}
+                        </p>
+                    </mat-toolbar>
+                    <div class="description">
+                        <p class="description-text">
+                            {{data.description}}
+                        </p>
+                    </div>
+
+                    <div class="phonenumber">
+                        {{data.phoneNumber}}
+                    </div>
+                </mat-card>
+
+                <button color="primary" mat-raised-button class="edit-button">
+                    <mat-icon>edit</mat-icon>
+                    Edit
+                </button>
+            </div>
+        </mat-card>
+    </div>
+</div>

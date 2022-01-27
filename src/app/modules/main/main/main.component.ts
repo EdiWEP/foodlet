@@ -12,30 +12,20 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class MainComponent implements OnInit {
 
-
+  public sidenavActive: boolean = false;
+  
   constructor(
     private router: Router,
     private authService: AuthService,
   ) { 
-    // router.events.pipe(filter(e => e instanceof NavigationStart))
-    //   .subscribe((event) => { 
-
-    //     this.authService.checkLogin().subscribe(
-    //       {
-    //         next: (result) => {
-    //         },
-    //         error: (error) => {
-    //           console.log(error.status);
-    //           console.error(error);
-    //           this.logout();
-
-    //         }
-    //       }
-    //     )
-    // });
+    
   }
 
   ngOnInit(): void {
+    if(this.router.url == '/') {
+
+      this.router.navigate(['/home'])
+    }
   }
 
   
@@ -48,9 +38,13 @@ export class MainComponent implements OnInit {
   }
 
   public logout() : void {
-    this.goToLogin();  
+    this.router.navigate(['/home']); 
     localStorage.removeItem('Role');
     localStorage.removeItem('Token');
     localStorage.removeItem('UserId');
+  }
+
+  public toggleSidenav() {
+    this.sidenavActive = !this.sidenavActive;
   }
 }

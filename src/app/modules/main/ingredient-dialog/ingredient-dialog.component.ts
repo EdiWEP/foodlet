@@ -1,7 +1,7 @@
+import { BuiltinType } from '@angular/compiler';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { IngredientService } from 'src/app/services/ingredient.service';
 import { SnackbarComponent } from 'src/app/snackbar/snackbar.component';
 
@@ -27,20 +27,23 @@ export class IngredientDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private ingredientService: IngredientService,
-    private snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<IngredientDialogComponent>
 
-  ) { }
+  ) { 
+    
+    if (this.data.formValue ) {
+      this.ingredientForm.patchValue(this.data.formValue);
+    }
+   
+  }
 
   ngOnInit(): void {
   }
 
-  sendData(ingredientId: string | null = null) {
+  sendData() {
     
     var id: string | null = null;
-    if(ingredientId) {
-      id = ingredientId;
-    }
+    
 
     if(this.ingredientForm.value.name == '' 
       || this.ingredientForm.value.calsperg == ''
@@ -59,29 +62,45 @@ export class IngredientDialogComponent implements OnInit {
         protein: this.ingredientForm.value.protein,
         fat: this.ingredientForm.value.fat,
         userId: localStorage.getItem('UserId')!,
-        id: id
+        id: null,
       }
       
+      
+      if(this.data.formValue) {
+        ingredient.id = this.data.formValue.id;
+      }
       ingredient.calsperg /= this.divideFactor;
       ingredient.carbs /= this.divideFactor;
       ingredient.protein /= this.divideFactor;
       ingredient.fat /= this.divideFactor;
       
-
-      console.log(ingredient);
       this.message = '';  
 
-      this.ingredientService.addIngredient(ingredient).subscribe({
-        next: (result) => {
-          
-          this.snackBar.openFromComponent(SnackbarComponent, { duration: 4000, panelClass: ['snackbar-success'], data: "Succesfully added a new ingredient!" })
-          this.dialogRef.close("success");
-        },
-        error: (error) => {
-          console.error(error);
-          this.message = "Failed to add ingredient";
-        }
-      });
+      if(this.data.action == "add") {
+        this.ingredientService.addIngredient(ingredient).subscribe({
+          next: (result) => {
+            
+            this.dialogRef.close("success");
+          },
+          error: (error) => {
+            console.error(error);
+            this.message = "Failed to "+ this.data.action +" ingredient";
+          }
+        });
+      }
+      else {
+        this.ingredientService.updateIngredient(ingredient).subscribe({
+          next: (result) => {
+            
+            this.dialogRef.close("success");
+          },
+          error: (error) => {
+            console.error(error);
+            this.message = "Failed to "+ this.data.action +" ingredient";
+          }
+        });
+      }
+      
     }
   }
 }
@@ -90,6 +109,7 @@ export interface DialogData {
   buttonText: string;
   titleText: string;
   formValue: any;
+  action: string;
 }
 
 export interface IngredientData {

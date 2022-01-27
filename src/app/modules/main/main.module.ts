@@ -9,6 +9,11 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { MainComponent } from './main/main.component';
 import { IngredientDialogComponent } from './ingredient-dialog/ingredient-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { ProfileComponent } from './profile/profile.component';
+import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
+import { RecipeingredientComponent } from './recipeingredient/recipeingredient.component';
+import { RecipeIngredientDialogComponent } from './recipe-ingredient-dialog/recipe-ingredient-dialog.component';
 
 
 @NgModule({
@@ -17,7 +22,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     IngredientsComponent,
     RecipesComponent,
     MainComponent,
-    IngredientDialogComponent
+    IngredientDialogComponent,
+    DeleteDialogComponent,
+    ProfileComponent,
+    RecipeDialogComponent,
+    RecipeingredientComponent,
+    RecipeIngredientDialogComponent
   ],
   imports: [
     CommonModule,

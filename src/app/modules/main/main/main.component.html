@@ -3,52 +3,60 @@
 
 
     <mat-toolbar  class="header">
+        <button mat-flat-button (click)="toggleSidenav()" color="accent" class="sidenav-activator-button"><mat-icon>menu</mat-icon></button>
         <img class="logo mat-elevation-z10" src="../../../../assets/images/foodletlogoTransparent.png">
         
         <div *ngIf="verifyLoggedIn(); then thenBlock else elseBlock"></div>
         <ng-template #thenBlock>
-            <button mat-raised-button color="primary" (click)="logout()">Logout</button> 
+            <button class="login-logout-button" mat-raised-button color="primary" (click)="logout()">Logout</button> 
      
         </ng-template>
         <ng-template #elseBlock>
-            <button mat-raised-button color="primary" (click)="goToLogin()">Login</button>
+            <button class="login-logout-button" mat-raised-button color="primary" (click)="goToLogin()">Login</button>
         </ng-template>
-           
+        
     </mat-toolbar>
     <mat-divider></mat-divider>
     
-    <div class="main">
-        <mat-card class="sidenav mat-elevation-z15">
-            
-            <mat-toolbar class="sidenav-toolbar"> <p>Menu</p> </mat-toolbar>
-            
-                <div class="sidenav-button-container">
-                    
-                    <a routerLink='home' class="sidenav-button">
-                        Home 
-                    </a>
-                    
-                    <a routerLink='ingredients' class="sidenav-button">
-                        Ingredients
-                    </a>
-                    
-                    <a routerLink='recipes' class="sidenav-button">
-                        Recipes
-                    </a>
-                    
-                </div>
-            
-            
+        <mat-sidenav-container class="main">
+            <mat-sidenav #sidenav opened="{{sidenavActive}}" mode="side" class="sidenav mat-elevation-15">
 
-        </mat-card>
-
+                <mat-card class="sidenav-card">
+                    
+                    <mat-toolbar class="sidenav-toolbar"> <p>Menu</p> </mat-toolbar>
+                    
+                    <div class="sidenav-button-container">
+                        
+                        <a routerLink='home' class="sidenav-button">
+                            Home 
+                        </a>
+                        
+                        <a routerLink='ingredients' class="sidenav-button">
+                            Ingredients
+                        </a>
+                        
+                        <a routerLink='recipes' class="sidenav-button">
+                            Recipes
+                        </a>
+                        
+                        <a routerLink='profile' class="sidenav-button">
+                            Profile
+                        </a>
+                        
+                    </div>
+                    
+                    
+                    
+                </mat-card>
+            </mat-sidenav>
+            
+            
+            <mat-sidenav-content class="content">
+                <mat-card class="mat-elevation-z8">
+                    <router-outlet ></router-outlet>
+                </mat-card>
+            </mat-sidenav-content>
+            
+        </mat-sidenav-container>
         
-        <div class="content">
-            <mat-card class="mat-elevation-z15">
-                <router-outlet ></router-outlet>
-            </mat-card>
-        </div>
-     
     </div>
-
-</div>

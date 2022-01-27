@@ -15,12 +15,35 @@ mat-toolbar {
     height: 6.5%;
     width: 100%;
     display: grid;
-    grid-template-columns: 37% 10% 44% 7em 1fr;
+    grid-template-columns: 3.5% 33.5% 10% 42% 7em 1fr;
     grid-template-rows: 1fr;
+
+    .sidenav-activator-button {
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        
+        background: rebeccapurple;
+        color:whitesmoke;
+        grid-column: 1;
+        width: 70%;
+        height: 75%;
+
+        mat-icon {
+            transform: scale(1.6);
+        }
+
+        mat-icon:hover {
+            transform:scale(1.9);
+            transition-duration: 230ms;
+            color:#ffb200;
+        }
+
+    }
 
     .logo {
         display: grid;
-        grid-column: 2;
+        grid-column: 3;
         margin-left: 45%;
         height: 100%;
         background-color: rgba(66,33,99,0.5);
@@ -29,14 +52,16 @@ mat-toolbar {
         
         
     }
-    button {
+
+    .login-logout-button {
         display: grid;
-        grid-column: 4;
+        grid-column: 5;
         margin-left: 30%;
         height: 60%;
         font-size: 20px;
         text-align: center;
     }
+   
 }
 
 .main {
@@ -44,89 +69,110 @@ mat-toolbar {
     width: 100%;
     height: 93.5%;
     display: flex;
-    background-color: #fff1dc;
 
-    justify-content: center;
-    align-items: center;
     
+    background-color: #fff1dc;
     .sidenav {
-        width: 20em;
-        height: 95%;
-        margin-left: 30px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-        border: 4px solid rebeccapurple;
-        padding: 0;
-        
-        .sidenav-toolbar {
+
+        background-color: rgba(0,0,0,0);
+        background: none;
+        height: 50%;
+        margin-top: 1%;
+        width: 22em;
+        padding-left: 30px;
             
-            background-color: rebeccapurple;
-            
-            border: 3px solid rebeccapurple;
-            height: 7.5%;
+        border-radius: 15px;
 
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-
-            display:flex;
-            justify-content: flex-end;
-            flex-direction: column;
-            align-items: center;
-            font-size: 33px;
-            font-weight: bold;
-            color: #ffb200;
-
-        }
-        .sidenav-button-container {
-
-            width: 18em;
-            height: 30%;
+        .sidenav-card {
+            width: 97.4%;
+            height: 97.4%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-evenly;
-            .sidenav-button {
-                width: 230px;
-                color:rebeccapurple;
-                font-weight: bold;
-                height: 26%;
-                margin: 0;
-                padding: 0;
-                border: 4px solid rebeccapurple;
-                border-radius: 20px;
+            // border-top-left-radius: 15px;
+            // border-top-right-radius: 15px;
+            border-radius: 15px;
+            border: 4px solid rebeccapurple;
+            background-color: #efefef;
+            padding: 0;
+            margin:0;
+            
+            // background-color: var(--themepurple);
+            
+            .sidenav-toolbar {
                 
+                background: rgb(102,51,153);
+                background: linear-gradient(180deg, rgba(102,51,153,1) 39%, rgba(108,59,178,1) 77%, rgba(126,68,204,1) 100%); 
+                
+                
+                height: 15%;
+                
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+                
+                display:flex;
+                justify-content: flex-end;
+                flex-direction: column;
+                align-items: center;
+                font-size: 33px;
+                font-weight: bold;
+                color: #ffb200;
+                
+            }
+            .sidenav-button-container {
+                
+                width: 18em;
+                height: 80%;
                 display: flex;
-                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-evenly;
+                .sidenav-button {
+                    
+                    // background: rgb(130,80,230);
+                    // background: radial-gradient(circle, rgba(130,80,230,1) 19%, rgba(112,57,168,1) 82%, rgba(112,57,168,1) 100%, rgba(255,178,0,1) 100%); 
+                    width: 230px;
+                    background: rgb(74,14,136);
+                    background: radial-gradient(circle, rgba(74,14,136,1) 24%, rgba(82,16,148,1) 45%, rgba(117,64,186,1) 100%, rgba(111,50,173,1) 100%, rgba(130,80,230,1) 100%, rgba(255,178,0,1) 100%); 
+                    color:#ffc847;
+                    font-weight: bold;
+                    height: 20%;
+                    margin: 0;
+                    padding: 0;
+                    border-radius: 20px;
+                    
+                    display: flex;
+                    justify-content: center;
                 align-items: center;
                 
                 
                 text-align: center;
                 text-decoration: none;
                 font-size: 30px;
-                              
+                
             }
-
+            
             .sidenav-button:hover {
-                background-color: rebeccapurple;
-                border: 3px solid rebeccapurple;
+                
+                background: rgb(130,80,230);
+                background: radial-gradient(circle, rgb(121, 70, 223) 19%, rgba(112,57,168,1) 82%, rgba(112,57,168,1) 100%, rgba(255,178,0,1) 100%); 
+                
                 color: #ffb200;
                 font-size: 33px;
                 font-weight: bold;
-                transition-duration: 260ms;
+                transition-duration: 250ms;
             }
         }
-
+        
         mat-divider {
             background-color: #673AB7;
-        height: 2px;
+            height: 2px;
         }
     }
-
+}
+    
     .content {
-        width: 85%;
+        width: 100%;
         height: 100%;
         background-color: #fff1dc;
         display:flex;

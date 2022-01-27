@@ -1,0 +1,38 @@
+<div class="ingredient-dialog-container">
+
+    <div class="dialog-title">
+        <p id="dialog-title-text">
+            Add an ingredient 
+        </p>
+        
+    </div>
+
+    <mat-card class="add-section">
+        <p class="subtitle">
+            Enter the ingredient name and the number of grams
+        </p>
+        
+        <form [formGroup] = "recipeIngredientForm" class="form">
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput required placeholder="Name" type="text" formControlName="name"/>
+            </mat-form-field>
+            
+            
+            <mat-form-field appearance="outline">
+                <mat-label>Grams</mat-label>
+                <input matInput required placeholder="In recipe" formControlName="grams"/>
+            </mat-form-field>
+        </form>
+    </mat-card>
+
+    <button mat-raised-button class="mat-elevation-z6" (click)="sendData()">
+        Add
+    </button>
+
+    <div class = "message-section">
+        <p id="message">
+
+        </p>
+    </div>
+</div>

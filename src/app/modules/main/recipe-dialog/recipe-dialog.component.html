@@ -1,0 +1,54 @@
+<div class="dialog-container">
+
+    <div class="dialog-title">
+        <p id="dialog-title-text">
+            {{data.titleText}}
+        </p>
+        
+    </div>
+
+    <mat-card class="form-section"> 
+        <p class="subtitle">
+            Use the Add button to add ingredients 
+        </p>
+
+        <div class="form-add-container"> 
+
+            <form [formGroup]="recipeForm" class="form">
+                
+                <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput required placeholder="Name" type="text" formControlName="name"/>
+                </mat-form-field>
+                
+                
+                <mat-form-field appearance="outline">
+                    <mat-label>Serving Size</mat-label>
+                    <input matInput required placeholder="Per portion" formControlName="servingSize"/>
+                </mat-form-field>
+                
+            </form>         
+            
+            <button mat-raised-button class="mat-elevation-z6" (click)="openIngredientDialog()">
+                Add
+            </button>
+            
+        </div>
+
+        <mat-card id="ingredient-container-card" class="ingredients-container">
+            
+            <app-recipeingredient *ngFor="let ingredient of recipeIngredients" [name]="ingredient.name" [grams] = "ingredient.grams">
+            
+            </app-recipeingredient>
+        
+        </mat-card>
+    </mat-card>
+
+    <button mat-raised-button class="mat-elevation-z6" (click)="sendData()">
+        {{data.buttonText}}
+    </button>
+
+    <div class="message-section">  
+            {{message}}
+    </div>
+</div>

@@ -1,0 +1,40 @@
+tr.table-row:not(.expanded-row):hover {
+    background: whitesmoke;
+    cursor: pointer;
+  }
+  
+  tr.table-row:not(.expanded-row):active {
+    background: #efefef;
+}
+
+tr.ingredients-table-row {
+    height:0 ;
+    max-height: 0px ;
+    
+
+   
+}
+
+
+
+.ingredient-table {
+    
+    
+    flex-direction: column;
+
+    justify-content: space-around;
+    overflow:hidden;
+    
+    
+    
+    width: 100%;
+    
+    .ingredient-header-cell {
+
+        font-size: 22px;
+        color:#ffb200;
+    }
+
+    
+}
+  

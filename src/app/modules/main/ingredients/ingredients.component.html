@@ -17,7 +17,7 @@
                 </mat-form-field>
             </form>
             
-            <button mat-raised-button (click)="openAddDialog()" class="add-button mat-elevation-z4" >
+            <button mat-raised-button (click)="openAddDialog()" class="add-button mat-elevation-z10" >
                 Add
             </button>
         </div>
@@ -34,12 +34,24 @@
                 <th mat-header-cell *matHeaderCellDef class="header-cell header-cell-name"> Name </th>
                 <td mat-cell *matCellDef="let element" class="table-cell"> 
                     <div class="name-cell"> 
-                        <div class="name-cell-buttons">
-                            <mat-icon>delete</mat-icon>
-                            <mat-divider vertical class="button-divider"></mat-divider>
-                        
-                            <mat-icon>edit</mat-icon>
-                        </div>
+                        <div *ngIf="checkSameId(element.userId); then thenBlock else elseBlock"></div>
+                        <ng-template #thenBlock>
+
+                            <div class="name-cell-buttons">
+                                
+                                <mat-icon (click)="openDeleteDialog(element.id)">delete</mat-icon>
+                                <mat-divider vertical class="button-divider"></mat-divider>
+                                <mat-icon (click)="openEditDialog(element)">edit</mat-icon>
+                                
+                            </div>
+                        </ng-template>
+                        <ng-template #elseBlock>
+                            <div class="no-buttons">
+                                <mat-icon>delete</mat-icon>
+                                <mat-divider vertical></mat-divider>
+                                <mat-icon>edit</mat-icon>
+                            </div>
+                        </ng-template>
                         <mat-divider vertical class="button-divider"></mat-divider>
                         <p>{{element.name[0].toUpperCase() + element.name.substring(1)}}</p> 
                     </div>
@@ -49,25 +61,25 @@
  
             <ng-container matColumnDef="calsperg" >
               <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by calories" class="header-cell"> Calories </th>
-              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.calsperg)}} </td>
+              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.calsperg) }} </td>
             </ng-container>
           
   
             <ng-container matColumnDef="carbs">
               <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by carbs" class="header-cell"> Carbs </th>
-              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.carbs)}} </td>
+              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.carbs) +' g'}} </td>
             </ng-container>
           
 
             <ng-container matColumnDef="protein">
               <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by protein" class="header-cell"> Protein </th>
-              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.protein)}} </td>
+              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.protein) +' g'}} </td>
             </ng-container>
           
             
             <ng-container matColumnDef="fat">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by fat" class="header-cell"> Fat </th>
-                <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.fat)}} </td>
+                <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.fat) +' g'}} </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></tr>
