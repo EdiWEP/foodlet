@@ -10,6 +10,11 @@ namespace FoodletAPI.Models
     {
         public string Id { get; set; }
 
+
+        public IngredientWithIdModel()
+        {
+
+        }
         public IngredientWithIdModel(Ingredient entity)
         {
             this.Id = entity.Id;
@@ -18,6 +23,7 @@ namespace FoodletAPI.Models
             this.Protein = entity.Protein;
             this.Fat = entity.Fat;
             this.Carbs = entity.Carbs;
+            this.UserId = entity.UserId;
     
         }
     }

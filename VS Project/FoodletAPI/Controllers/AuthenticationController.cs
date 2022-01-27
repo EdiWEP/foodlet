@@ -57,6 +57,14 @@ namespace FoodletAPI.Controllers
             }
         }
 
+        [HttpGet("check")]
+        [Authorize(Policy = "User")]
+        // Used to check if user is logged in
+        public IActionResult CheckLoggedIn()
+        {
+            return Ok();
+        }
+
         [HttpPost("newadmin")]
         [Authorize(Policy = "Admin")]
         public async Task<IActionResult> RegisterAdmin([FromBody] RegisterModel model)

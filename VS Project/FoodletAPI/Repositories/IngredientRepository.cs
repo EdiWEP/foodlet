@@ -1,5 +1,6 @@
 ﻿using FoodletAPI.Entities;
 using FoodletAPI.Interfaces.Repositories;
+using FoodletAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,11 @@ namespace FoodletAPI.Repositories
         public async Task<List<Ingredient>> GetAllOfUser(string userId)
         {
             return await _set.Where(x => x.UserId == userId).ToListAsync();
+        }
+
+        public async Task<Ingredient> GetByModel(IngredientModel model)
+        {
+            return await _set.Where(x => x.UserId == model.UserId && x.Calsperg == model.Calsperg && x.Name == model.Name && x.Protein == model.Protein && x.Fat == model.Fat && x.Carbs == model.Carbs).FirstOrDefaultAsync();
         }
 
         public async Task<List<Ingredient>> SearchByName(string term, string userId)

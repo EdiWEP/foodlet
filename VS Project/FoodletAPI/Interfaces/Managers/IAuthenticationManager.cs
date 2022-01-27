@@ -11,5 +11,6 @@ namespace FoodletAPI.Interfaces.Managers
         Task<int> Register(RegisterModel registerModel);
         Task<int> RegisterAdmin(RegisterModel registerModel);
         Task<TokenModel> Login(LoginModel loginModel);
+
     }
 }

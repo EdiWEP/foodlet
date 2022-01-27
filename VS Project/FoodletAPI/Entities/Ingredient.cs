@@ -44,7 +44,7 @@ namespace FoodletAPI.Entities
         public Ingredient(IngredientModel addModel)
         {
             Id = Guid.NewGuid().ToString();
-            Name = addModel.Name;
+            Name = addModel.Name.ToLower();
             Calsperg = addModel.Calsperg;
             Fat = addModel.Fat;
             Carbs = addModel.Carbs;
@@ -61,6 +61,7 @@ namespace FoodletAPI.Entities
             Fat = model.Fat;
             Carbs = model.Carbs;
             Protein = model.Protein;
+            UserId = model.UserId;
             Recipes = null;
         }
 

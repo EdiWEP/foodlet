@@ -1,4 +1,5 @@
 ﻿using FoodletAPI.Entities;
+using FoodletAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace FoodletAPI.Interfaces.Repositories
     {
         void CreateRangeFromList(List<Ingredient> ingredients);
 
+        Task<Ingredient> GetByModel(IngredientModel model);
         Task<Ingredient> GetByName(string name);
         Task<List<Ingredient>> GetAllDefault();
 

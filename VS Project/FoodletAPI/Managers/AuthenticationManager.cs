@@ -114,7 +114,7 @@ namespace FoodletAPI.Managers
                 if (result.Succeeded)
                 {
                     var token = await _tokenManager.CreateToken(user);
-                    return new TokenModel { Token = token, UserId = user.Id };
+                    return new TokenModel { Token = token, UserId = user.Id, Role = (await _userManager.GetRolesAsync(user))[0] };
                 }
             }
 

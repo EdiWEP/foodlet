@@ -71,16 +71,16 @@ namespace FoodletAPI.Controllers
         public async Task<IActionResult> GetProfileByUserId([FromRoute] string user)
         {
 
-            var profile = await _manager.GetProfileByUsername(user);
+            //var profile = await _manager.GetProfileByUsername(user);
 
-            if (profile == null)
-            {
-                return NotFound("User not found");
-            }
-            else
-            {
-                return Ok(profile);
-            }
+            //if (profile == null)
+            //{
+            //    return NotFound("User not found");
+            //}
+            //else
+            //{
+                return Ok(await _manager.GetProfileByUserId(user));
+            //}
         }
 
         [HttpPut("update/profile")]

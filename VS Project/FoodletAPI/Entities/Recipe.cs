@@ -41,10 +41,10 @@ namespace FoodletAPI.Entities
             Id = Guid.NewGuid().ToString();
             UserId = addModel.UserId;
             Name = addModel.Name;
-            Calsperg = addModel.Calsperg;
-            Fat = addModel.Fat;
-            Carbs = addModel.Carbs;
-            Protein = addModel.Protein;
+            Calsperg = addModel.Calsperg / addModel.ServingSize;
+            Fat = addModel.Fat / addModel.ServingSize;
+            Carbs = addModel.Carbs / addModel.ServingSize;
+            Protein = addModel.Protein / addModel.ServingSize;
             NumberOfIngredients = addModel.NumberOfIngredients;
             ServingSize = addModel.ServingSize;
         }
