@@ -3,13 +3,13 @@
         <mat-divider vertical class="divider"> </mat-divider>
 
         <div class="ingredient-name">
-            {{name}}
+            {{name | caps}}
         </div>
 
         <mat-divider vertical class="divider"> </mat-divider>
 
         <div class="ingredient-grams">
-            {{grams + ' g'}}
+            {{grams | gramspipe}}
         </div>
 
         <mat-divider vertical class="divider"> </mat-divider>

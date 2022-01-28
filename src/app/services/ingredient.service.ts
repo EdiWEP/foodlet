@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Ingredient } from '../modules/main/interfaces';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -39,13 +40,3 @@ export class IngredientService {
   }
 }
 
-export interface Ingredient {
-  id: string | null;
-  name: string;
-  calsperg: number;
-  carbs: number;
-  protein: number;
-  fat: number;
-  userId: string;
-
-}

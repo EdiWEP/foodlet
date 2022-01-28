@@ -10,10 +10,13 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    SnackbarComponent
+    SnackbarComponent,
+    
   ],
   imports: [
     BrowserModule,

@@ -45,7 +45,6 @@ export class RecipesComponent implements OnInit {
   ngOnInit(): void {
     this.getRecipes();
 
-    this.openAddDialog();
   }
 
 

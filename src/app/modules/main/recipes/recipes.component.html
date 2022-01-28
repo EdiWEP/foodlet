@@ -50,7 +50,7 @@
                             </div>
                         </ng-template>
                         <mat-divider vertical class="button-divider"></mat-divider>
-                        <p>{{element.name[0].toUpperCase() + element.name.substring(1)}}</p> 
+                        <p>{{element.name | caps}}</p> 
                     </div>
                 </td>
             </ng-container>
@@ -64,24 +64,24 @@
   
             <ng-container matColumnDef="carbs">
               <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by carbs" class="header-cell"> Carbs </th>
-              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.carbs, element.servingSize) +' g'}} </td>
+              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.carbs, element.servingSize) | gramspipe}} </td>
             </ng-container>
           
 
             <ng-container matColumnDef="protein">
               <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by protein" class="header-cell"> Protein </th>
-              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.protein, element.servingSize) +' g'}} </td>
+              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.protein, element.servingSize) | gramspipe}} </td>
             </ng-container>
           
             
             <ng-container matColumnDef="fat">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by fat" class="header-cell"> Fat </th>
-                <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.fat, element.servingSize) +' g'}} </td>
+                <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.fat, element.servingSize) | gramspipe}} </td>
             </ng-container>
 
             <ng-container matColumnDef="servingSize">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by serving size" class="header-cell"> Portion </th>
-                <td mat-cell *matCellDef="let element" class="table-cell"> {{element.servingSize +' g'}} </td>
+                <td mat-cell *matCellDef="let element" class="table-cell"> {{element.servingSize | gramspipe}} </td>
             </ng-container>
 
             <ng-container matColumnDef="numberOfIngredients">

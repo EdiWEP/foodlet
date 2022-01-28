@@ -15,6 +15,8 @@ import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
 import { RecipeingredientComponent } from './recipeingredient/recipeingredient.component';
 import { RecipeIngredientDialogComponent } from './recipe-ingredient-dialog/recipe-ingredient-dialog.component';
 import { Recipe, RecipeModel, RecipeIngredient, RecipeIngredientModel, Ingredient } from './interfaces';
+import { GramsPipe } from 'src/app/grams.pipe';
+import { CapsPipe } from 'src/app/caps.pipe';
 
 @NgModule({
   declarations: [
@@ -28,13 +30,19 @@ import { Recipe, RecipeModel, RecipeIngredient, RecipeIngredientModel, Ingredien
     RecipeDialogComponent,
     RecipeingredientComponent,
     RecipeIngredientDialogComponent,
-
+    GramsPipe,
+    CapsPipe
   ],
   imports: [
     CommonModule,
     MainRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
+    
+  ],
+  exports: [
+    GramsPipe,
+    CapsPipe
   ]
 })
 export class MainModule { }
