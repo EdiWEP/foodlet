@@ -24,6 +24,10 @@ namespace FoodletAPI.Repositories
             return await _set.Where(x => x.UserId == null).ToListAsync();
         }
 
+        public async Task<List<Ingredient>> GetFromIdList(List<string> listOfIds)
+        {
+            return await _set.Where(x => listOfIds.Contains(x.Id)).ToListAsync();
+        }
 
         public async Task<List<Ingredient>> GetByUserId(string userId)
         {

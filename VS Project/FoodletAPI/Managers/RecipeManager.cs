@@ -13,10 +13,12 @@ namespace FoodletAPI.Managers
     {
 
         private readonly IRecipeRepository _repo;
+        private readonly IIngredientRepository _ingredRepo;
 
-        public RecipeManager(IRecipeRepository recipeRepo)
+        public RecipeManager(IRecipeRepository recipeRepo, IIngredientRepository ingredRepo)
         {
             _repo = recipeRepo;
+            _ingredRepo = ingredRepo;
         }
 
         public async Task<List<ReturnRecipeModel>> GetAll()
@@ -72,7 +74,7 @@ namespace FoodletAPI.Managers
 
         public async Task<bool> AddRecipe(AddRecipeModel addModel) 
         {
-            var newRecipe = new Recipe(addModel);
+            var newRecipe = await CreateRecipe(addModel);
 
             
             var newIngredients = new List<RecipeIngredient>();
@@ -110,25 +112,28 @@ namespace FoodletAPI.Managers
             }
         }
 
-        public async Task<int> Update(UpdateRecipeModel recipeModel)
+        public async Task<int> Update(UpdateRecipeModel model)
         {
-            var recipe = await _repo.GetById(recipeModel.Id);
+            var recipe = await _repo.GetById(model.Id);
 
             if (recipe == null)
             {
                 return 404;
             }
 
+            var newRecipe = await CreateRecipe(model);
+
+            recipe.UpdateFromRecipe(newRecipe);
+
             var newIngredients = new List<RecipeIngredient>();
 
-            foreach (var ingredient in recipeModel.Ingredients)
+            foreach (var ingredient in model.Ingredients)
             {
-                newIngredients.Add(new RecipeIngredient(recipeModel.Id, ingredient));
+                newIngredients.Add(new RecipeIngredient(model.Id, ingredient));
             }
 
-            _repo.UpdateRecipeIngredients(recipeModel.Id, newIngredients);
+            _repo.UpdateRecipeIngredients(model.Id, newIngredients);
             
-            recipe.UpdateFromModel(recipeModel);
             _repo.Update(recipe);
 
             if (await _repo.SaveChanges())
@@ -139,6 +144,57 @@ namespace FoodletAPI.Managers
             {
                 return 500;
             }
+        }
+
+
+        private async Task<Recipe> CreateRecipe(AddRecipeModel model)
+        {
+            var newRecipe = new Recipe();
+            newRecipe.Name = model.Name.Trim().ToLower();
+            newRecipe.NumberOfIngredients = model.NumberOfIngredients;
+            newRecipe.ServingSize = model.ServingSize;
+            newRecipe.UserId = model.UserId;
+
+            var ingredientIds = new List<string>();
+
+            foreach(var ingredient in model.Ingredients)
+            {
+                ingredientIds.Add(ingredient.IngredientId);
+            }
+
+            var ingredients = await _ingredRepo.GetFromIdList(ingredientIds);
+
+            float calories = 0 , fat = 0 , protein = 0 , carbs = 0;
+            int totalGrams = 0;
+
+            foreach(var ingredient in ingredients)
+            {
+                int grams = 0;
+                foreach(var ing in model.Ingredients)
+                {
+                    if(ing.IngredientId == ingredient.Id)
+                    {
+                        grams = ing.Grams;
+                        break;
+                    }
+                }
+                totalGrams += grams;
+                calories += ingredient.Calsperg * grams;
+                fat += ingredient.Fat * grams;
+                protein += ingredient.Protein * grams;
+                carbs += ingredient.Carbs * grams;
+
+
+            }
+
+            newRecipe.Calsperg = calories / totalGrams;
+            newRecipe.Fat = fat / totalGrams;
+            newRecipe.Carbs = carbs / totalGrams;
+            newRecipe.Protein = protein / totalGrams;
+
+
+            return newRecipe;
+
         }
     }
 }

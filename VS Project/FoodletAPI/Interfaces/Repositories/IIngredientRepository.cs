@@ -15,6 +15,9 @@ namespace FoodletAPI.Interfaces.Repositories
         Task<Ingredient> GetByName(string name);
         Task<List<Ingredient>> GetAllDefault();
 
+        // Returns ingredients with the given ids
+        Task<List<Ingredient>> GetFromIdList(List<string> listOfIds);
+
         // Gets all ingredients accessible to user with userId(includes the defaults)
         Task<List<Ingredient>> GetByUserId(string userId);
 

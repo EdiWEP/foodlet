@@ -36,30 +36,15 @@ namespace FoodletAPI.Entities
             RecipeIngredients = null;
         }
 
-        public Recipe(AddRecipeModel addModel)
+        public void UpdateFromRecipe(Recipe recipe)
         {
-            Id = Guid.NewGuid().ToString();
-            UserId = addModel.UserId;
-            Name = addModel.Name;
-            Calsperg = addModel.Calsperg / addModel.ServingSize;
-            Fat = addModel.Fat / addModel.ServingSize;
-            Carbs = addModel.Carbs / addModel.ServingSize;
-            Protein = addModel.Protein / addModel.ServingSize;
-            NumberOfIngredients = addModel.NumberOfIngredients;
-            ServingSize = addModel.ServingSize;
-        }
-        public void UpdateFromModel(UpdateRecipeModel model)
-        {
-            Name = model.Name;
-            UserId = model.UserId;
-
-            Calsperg = model.Calsperg;
-            Fat = model.Fat;
-            Carbs = model.Carbs;
-            Protein = model.Protein;
-
-            NumberOfIngredients = model.NumberOfIngredients;
-            ServingSize = model.ServingSize;
+            Name = recipe.Name;
+            Calsperg = recipe.Calsperg;
+            Fat = recipe.Fat;
+            Carbs = recipe.Carbs;
+            Protein = recipe.Protein;
+            NumberOfIngredients = recipe.NumberOfIngredients;
+            ServingSize = recipe.ServingSize;
         }
     }
 }
