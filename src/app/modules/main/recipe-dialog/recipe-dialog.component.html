@@ -24,22 +24,35 @@
                 
                 <mat-form-field appearance="outline">
                     <mat-label>Serving Size</mat-label>
-                    <input matInput required placeholder="Per portion" formControlName="servingSize"/>
+                    <input matInput required placeholder="Per portion" type="number" formControlName="servingSize"/>
                 </mat-form-field>
                 
             </form>         
             
-            <button mat-raised-button class="mat-elevation-z6" (click)="openIngredientDialog()">
+            <button mat-raised-button class="add-ingredient-button mat-elevation-z6" (click)="openIngredientDialog()">
                 Add
             </button>
             
         </div>
 
-        <mat-card id="ingredient-container-card" class="ingredients-container">
+        <mat-card id="ingredient-container-card" class="ingredients-container-card">
             
-            <app-recipeingredient *ngFor="let ingredient of recipeIngredients" [name]="ingredient.name" [grams] = "ingredient.grams">
-            
-            </app-recipeingredient>
+            <mat-toolbar class="ingredients-container-header">
+                <div class="recipe-ingredient-name">
+                    Ingredients
+                </div>
+                
+            </mat-toolbar>
+            <div class="ingredients-container">
+
+                <app-recipeingredient 
+                *ngFor="let ingredient of recipeIngredients" 
+                [name]="ingredient.name" 
+                [grams] = "ingredient.grams"
+                (removed)="removeIngredient($event)">
+                    
+                </app-recipeingredient>
+            </div>
         
         </mat-card>
     </mat-card>
@@ -49,6 +62,8 @@
     </button>
 
     <div class="message-section">  
+            <p id="message">
             {{message}}
+            </p>
     </div>
 </div>

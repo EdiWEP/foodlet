@@ -8,6 +8,8 @@ export class AuthService {
 
   private apiUrl : string = 'https://localhost:44386/api/authentication/'
 
+  private username : string = '';
+  
   constructor(
     private http : HttpClient
   ) { }
@@ -26,6 +28,7 @@ export class AuthService {
     }
     else {
       credentials.username = formData.username;
+      this.username = formData.username;
     }
 
     return this.http.post(this.apiUrl + 'login', credentials);
@@ -46,6 +49,10 @@ export class AuthService {
     localStorage.removeItem('UserId');
   }
 
+  public getUsername() : string {
+    return this.username;
+  }
+  
   public getAuthHeaders() : HttpHeaders {
     const token = localStorage.getItem('Token');
     var headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);

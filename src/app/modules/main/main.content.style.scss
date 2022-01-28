@@ -31,6 +31,7 @@
             border-top-right-radius: 4px;
             display: flex;
             justify-content: flex-end;
+             
             p {
                 font-size: 45px;
                 font-weight: bolder;
@@ -93,18 +94,18 @@
         width: 90%;
         height: 75%;
         margin-bottom: 25px;
-
         .table {
-            width: 100%;
-            overflow: hidden;
+            width: 100% !important;
             border-top: 3px solid rebeccapurple;
             border-left: 3px solid rebeccapurple;
             border-right: 3px solid rebeccapurple;
+            
 
             .header-cell {
 
                 font-size: 22px;
                 color:#ffb200;
+                
             }
 
             .header-cell-name {
@@ -115,6 +116,8 @@
                 display: flex;
                 
                 align-content: center;
+                align-items: center;
+                 
                 color: slateblue;//var(--themepurple);
 
                 .no-buttons {
@@ -129,7 +132,7 @@
                 .name-cell-buttons {
                     display:flex;
                     justify-content: space-between;
-                 
+                    
                     
                     :first-child {
                         padding-top: 5px;
@@ -189,7 +192,7 @@
         }
 
         .table-paginator {
-            width: 100%;
+            width: 99.7%;
             
             border: 3px solid rebeccapurple;
 

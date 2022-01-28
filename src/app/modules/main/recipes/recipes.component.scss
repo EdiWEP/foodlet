@@ -1,10 +1,15 @@
 tr.table-row:not(.expanded-row):hover {
     background: whitesmoke;
-    cursor: pointer;
+    
   }
   
-  tr.table-row:not(.expanded-row):active {
+tr.table-row:not(.expanded-row):active {
     background: #efefef;
+    
+}
+
+tr.table-row:hover {
+    cursor: pointer;
 }
 
 tr.ingredients-table-row {

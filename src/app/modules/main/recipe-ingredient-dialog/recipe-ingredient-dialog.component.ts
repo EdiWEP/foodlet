@@ -25,27 +25,52 @@ export class RecipeIngredientDialogComponent implements OnInit {
   }
 
   public sendData() {
-    if(this.recipeIngredientForm.value.name && this.recipeIngredientForm.value.grams) {
+    if(this.recipeIngredientForm.value.name.trim() && this.recipeIngredientForm.value.grams.trim()) {
 
+      var name = this.recipeIngredientForm.value.name;
+      var grams = this.recipeIngredientForm.value.grams;
 
+      var found : boolean = false;
       for(let ingredient of this.data.ingredients) {
-        if(ingredient.name == this.recipeIngredientForm.value.name) {
+        if(ingredient.name == name) {
           
-          var newIngredient : IngredientEntry = {
-            id: ingredient.id ,
-            name: ingredient.name,
-            grams: this.recipeIngredientForm.value.grams,
+          found = true;
+          var alreadyUsed = false;
+
+          for(let usedIngredient of this.data.currentIngredients) {
+            if(usedIngredient.name == name) {
+              alreadyUsed = true;
+              break;
+            }
           }
-          console.log('y');
-          console.log(newIngredient);
-          this.dialogRef.close(newIngredient);
+
+          if(alreadyUsed) {
+            this.changeMessage("Ingredient already added");
+          }
+          else {
+
+            var newIngredient : IngredientEntry = {
+              id: ingredient.id ,
+              name: ingredient.name,
+              grams: grams,
+            }
+            
+            this.dialogRef.close(newIngredient);
+          }
         }
       }
+      if(!found){
+        this.changeMessage("Ingredient not found");
+      }
+    }
+    else {
+      this.changeMessage("Please fill the form"); 
     }
     
-    document.getElementById("message")!.innerText = "Ingredient not found";
+  }
 
-
+  public changeMessage(message : string) {
+    document.getElementById("ingredient-message")!.innerText = message; 
   }
 }
 

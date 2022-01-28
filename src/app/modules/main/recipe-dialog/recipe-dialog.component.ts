@@ -53,8 +53,9 @@ export class RecipeDialogComponent implements OnInit {
     this.dialog.open(RecipeIngredientDialogComponent, 
       {
         width:"35vw", 
-        height:"40vh", 
+        height:"30vh", 
         data: {
+          currentIngredients: this.recipeIngredients,
           ingredients: this.ingredients,
         }
       });
@@ -76,7 +77,20 @@ export class RecipeDialogComponent implements OnInit {
   }
 
   public sendData() {
-    
+
+    if(this.recipeForm.value.name.trim() == '' || ( this.recipeForm.value.servingSize == '' || this.recipeForm.value.servingSize.toString().trim() == '')) {
+      document.getElementById("message")!.innerText = "Please fill the form";
+    }
+    else {
+      if(this.recipeIngredients.length < 2) {
+        document.getElementById("message")!.innerText = "Please add at least two ingredients";
+      }
+    }
+  }
+
+  public removeIngredient(name: string) {
+    this.recipeIngredients = this.recipeIngredients.filter((value) => {return value.name != name});
+
   }
 }
 

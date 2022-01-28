@@ -1,10 +1,26 @@
 <div class="ingredient-list-item">
-    <div>
-        {{name}}
+    
+        <mat-divider vertical class="divider"> </mat-divider>
+
+        <div class="ingredient-name">
+            {{name}}
+        </div>
+
+        <mat-divider vertical class="divider"> </mat-divider>
+
+        <div class="ingredient-grams">
+            {{grams + ' g'}}
+        </div>
+
+        <mat-divider vertical class="divider"> </mat-divider>
+
+        <div class="remove-button-container">
+            <mat-icon (click)="remove()" class="remove-button">close</mat-icon>
+        </div>
+        
+        <mat-divider vertical class="divider"> </mat-divider>
+
+ 
     </div>
-    <mat-divider vertical> </mat-divider>
-    <div>
-        {{grams + ' g'}}
-    </div>
-</div>
-<mat-divider> </mat-divider>
+    
+  

@@ -6,7 +6,7 @@
     display:flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     
 
     .dialog-title {
@@ -23,7 +23,7 @@
         justify-content: space-evenly;
         align-items: center;
 
-        height: 67%;
+        height: 70%;
         width: 90%;
 
 
@@ -36,44 +36,69 @@
             width: 100%;
             display: flex;
             align-items: center;
-            justify-content: space-around;
+            justify-content: space-between;
             
             .form {
                 height: 100%;
-                width: 100%;
+                width: 80%;
                 display: flex;
-                flex-wrap: wrap;
                 flex-direction: row;
                 justify-content: space-around;
                 align-items: center;
 
+                 mat-form-field {
+                    width: 45%;
+                }
+
             }
             
-            button {
+            .add-ingredient-button  {
                 background-color: var(--themepurple);
                 color:white;
                 text-align: center;
 
                 font-size: 20px;
-                width: 3em;
-                height: 2em;
+                width: 15%;
+                height: 65%;
                 display: flex;
                 align-items: center;
+                justify-content: center;
             }
-            button:hover {
+            .add-ingredient-button:hover {
                 background-color: green;
         
                 transition-duration: 250ms;
             }
         }
 
-        .ingredients-container {
+        .ingredients-container-card {
             height: 60%;
             width: 90%;
-            overflow: auto;
-
+            padding:0 !important;
             
+            display:flex;
+            justify-content: center;
+            flex-direction: column;
 
+            .ingredients-container-header {
+                width: 100%;
+                display:flex;
+                justify-content: center;
+                height: 18%;
+                font-size: 24px;
+                background-color: rebeccapurple;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+                
+                color: #ffb200;
+            }
+            
+            .ingredients-container {
+                height: 82%;
+                width: 100%;
+                overflow: auto;
+
+            }
             
         }
     }
@@ -84,10 +109,12 @@
         text-align: center;
 
         font-size: 20px;
-        width: 4em;
+        width: 12%;
         height: 8%;
         display: flex;
         align-items: center;
+        justify-content:center;
+
     }
 
     button:hover {
@@ -98,7 +125,7 @@
 
     .message-section {
         color:orangered;
-        height: 20px;
+        height: 12px;
         font-size: 18px;
     }
 }
