@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackbarComponent } from 'src/app/snackbar/snackbar.component';
 import { NgIf } from '@angular/common';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { Ingredient } from '../interfaces';
 
 @Component({
   selector: 'app-ingredients',
@@ -191,14 +192,3 @@ export class IngredientsComponent implements OnInit {
 }
 
 
-export interface Ingredient {
-  id: string;
-  name: string;
-  calsperg: number;
-  carbs: number;
-  protein: number;
-  fat: number;
-  userId: string;
-
-  
-}

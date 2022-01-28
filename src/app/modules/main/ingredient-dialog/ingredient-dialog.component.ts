@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { IngredientService } from 'src/app/services/ingredient.service';
 import { SnackbarComponent } from 'src/app/snackbar/snackbar.component';
+import { Ingredient } from '../interfaces';
 
 @Component({
   selector: 'app-ingredient-dialog',
@@ -55,7 +56,7 @@ export class IngredientDialogComponent implements OnInit {
       this.message = 'Please fill the form';
     }
     else {
-      var ingredient: IngredientData = {
+      var ingredient: Ingredient = {
         name: this.ingredientForm.value.name,
         calsperg: this.ingredientForm.value.calsperg,
         carbs: this.ingredientForm.value.carbs,
@@ -112,12 +113,3 @@ export interface DialogData {
   action: string;
 }
 
-export interface IngredientData {
-  name: string;
-  calsperg: number;
-  carbs: number;
-  protein: number;
-  fat: number;
-  userId: string;
-  id: string | null;
-}

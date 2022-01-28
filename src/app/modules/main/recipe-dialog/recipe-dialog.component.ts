@@ -1,9 +1,9 @@
-import { identifierName } from '@angular/compiler';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IngredientService } from 'src/app/services/ingredient.service';
 import { RecipeService } from 'src/app/services/recipe.service';
+import { Ingredient, RecipeIngredient, RecipeIngredientModel, RecipeModel } from '../interfaces';
 import { RecipeIngredientDialogComponent } from '../recipe-ingredient-dialog/recipe-ingredient-dialog.component';
 
 
@@ -18,7 +18,7 @@ export class RecipeDialogComponent implements OnInit {
   public message: string = '';
 
   public ingredients!: Ingredient[];
-  public recipeIngredients: IngredientEntry[] = [] as IngredientEntry[];;
+  public recipeIngredients: RecipeIngredientModel[] = [] as RecipeIngredientModel[];;
 
   public recipeForm : FormGroup = new FormGroup({
     name: new FormControl(''),
@@ -46,6 +46,12 @@ export class RecipeDialogComponent implements OnInit {
       }
     })
 
+    if(this.data.action == 'edit') {
+      this.recipeForm.patchValue(this.data.formValue);
+
+      this.recipeIngredients = this.data.formValue.ingredients;
+
+    }
   }
 
   public openIngredientDialog() {
@@ -64,7 +70,7 @@ export class RecipeDialogComponent implements OnInit {
       next : (result) => {
         if(result) {
           
-          var newIng : IngredientEntry = result;
+          var newIng : RecipeIngredientModel = result;
           this.recipeIngredients.push(newIng);
         }
       },
@@ -79,53 +85,91 @@ export class RecipeDialogComponent implements OnInit {
   public sendData() {
 
     if(this.recipeForm.value.name.trim() == '' || ( this.recipeForm.value.servingSize == '' || this.recipeForm.value.servingSize.toString().trim() == '')) {
-      document.getElementById("message")!.innerText = "Please fill the form";
+      this.changeMessage("Please fill the form");
     }
     else {
       if(this.recipeIngredients.length < 2) {
-        document.getElementById("message")!.innerText = "Please add at least two ingredients";
+        this.changeMessage("Please add at least two ingredients");
+      }
+      else {
+        var recipe = this.createRecipe(
+          this.recipeForm.value.name, 
+          this.recipeForm.value.servingSize, 
+          this.recipeIngredients.length
+        );
+
+        if(this.data.action == 'add') {
+
+          this.recipeService.addRecipe(recipe).subscribe({
+            next: (result) => {
+              this.dialogRef.close("success");
+            },
+            error: (error) => {
+              console.error(error);
+              this.changeMessage("Failed to add recipe");
+              
+            }
+          }); 
+        }
+        else {
+          console.log(recipe);
+          console.log(this.recipeIngredients);
+          recipe.id = this.data.formValue.id;
+
+          this.recipeService.updateRecipe(recipe).subscribe({
+            next: (result) => {
+              this.dialogRef.close("success");
+            },
+            error: (error) => {
+              console.error(error);
+              this.changeMessage("Failed to edit recipe");
+              
+            }
+          }); 
+        }
       }
     }
+
+
   }
 
-  public removeIngredient(name: string) {
-    this.recipeIngredients = this.recipeIngredients.filter((value) => {return value.name != name});
+  public removeIngredient(removedName: string) {
+    this.recipeIngredients = 
+      this.recipeIngredients.filter((ingredient) => ingredient.name != removedName);
+  }
 
+  private createRecipe(name: string, servingSize: number, numberOfIngredients: number) : RecipeModel {
+    
+    var ingredients : RecipeIngredient[] = [];
+    this.recipeIngredients.forEach(ingredient => {
+      ingredients.push(this.ingredientFromModel(ingredient));
+    });
+
+    var userId = localStorage.getItem('UserId')!;
+
+    var recipe : RecipeModel = {
+      id: '',
+      name: name,
+      userId: userId,
+      numberOfIngredients: numberOfIngredients,
+      servingSize: servingSize,
+      ingredients: ingredients,
+    }
+
+    return recipe;
+  }
+
+  private ingredientFromModel(model : RecipeIngredientModel) : RecipeIngredient {
+    var newIngredient : RecipeIngredient = {
+      ingredientId: model.ingredientId,
+      grams: model.grams,
+    }
+
+    return newIngredient;
+  }
+
+  private changeMessage(message : string) {
+    document.getElementById("message")!.innerText = message; 
   }
 }
 
-
-export interface IngredientEntry {
-  id: string;
-  name: string;
-  grams: string;
-}
-
-export interface Ingredient {
-  id: string;
-  name: string;
-  calsperg: number;
-  carbs: number;
-  protein: number;
-  fat: number;
-  userId: string;
-}
-
-
-export interface Recipe {
-  id: string;
-  name: string;
-  calsperg: number;
-  carbs: number;
-  protein: number;
-  fat: number;
-  userId: string;
-  numberOfIngredients: number;
-  servingSize: number;
-  ingredients: [RecipeIngredient]
-}
-
-export interface RecipeIngredient {
-  id: string;
-  grams: string;
-}

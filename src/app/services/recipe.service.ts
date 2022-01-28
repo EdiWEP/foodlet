@@ -23,7 +23,7 @@ export class RecipeService {
   }
 
   public addRecipe(recipe : Recipe) : Observable<any> {
-
+    console.log(recipe);
     //return this.http.post(this.apiUrl + 'add', { body: {recipe}, headers: this.authService.getAuthHeaders()});
     return this.http.post(this.apiUrl + 'add', recipe, {headers:this.authService.getAuthHeaders(), responseType: 'text'});
   }
@@ -35,22 +35,21 @@ export class RecipeService {
   
   public updateRecipe(recipe: Recipe) : Observable<any> {
 
+    console.log(recipe);
     return this.http.put(this.apiUrl + 'update', recipe, {headers: this.authService.getAuthHeaders(), responseType: 'text'});
   }
 }
 
 export interface Recipe {
   id: string;
-  name: string;
-  calsperg: number;
-  carbs: number;
-  protein: number;
-  fat: number;
   userId: string;
+  name: string;
   numberOfIngredients: number;
   servingSize: number;
-  ingredients: [{
-    grams: number;
-    ingredientId: string;
-  }]
+  ingredients: RecipeIngredient[]
+}
+
+export interface RecipeIngredient {
+  ingredientId: string;
+  grams: string;
 }

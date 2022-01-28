@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IngredientService } from 'src/app/services/ingredient.service';
+import { RecipeIngredientModel } from '../interfaces';
 
 @Component({
   selector: 'app-recipe-ingredient-dialog',
@@ -49,8 +50,8 @@ export class RecipeIngredientDialogComponent implements OnInit {
           }
           else {
 
-            var newIngredient : IngredientEntry = {
-              id: ingredient.id ,
+            var newIngredient : RecipeIngredientModel = {
+              ingredientId: ingredient.id ,
               name: ingredient.name,
               grams: grams,
             }
@@ -69,13 +70,8 @@ export class RecipeIngredientDialogComponent implements OnInit {
     
   }
 
-  public changeMessage(message : string) {
+  private changeMessage(message : string) {
     document.getElementById("ingredient-message")!.innerText = message; 
   }
 }
 
-export interface IngredientEntry {
-  id: string;
-  name: string;
-  grams: string;
-}

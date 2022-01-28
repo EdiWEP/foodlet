@@ -58,25 +58,25 @@
  
             <ng-container matColumnDef="calsperg" >
               <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by calories" class="header-cell"> Calories </th>
-              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.calsperg) }} </td>
+              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.calsperg, element.servingSize) }} </td>
             </ng-container>
           
   
             <ng-container matColumnDef="carbs">
               <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by carbs" class="header-cell"> Carbs </th>
-              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.carbs) +' g'}} </td>
+              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.carbs, element.servingSize) +' g'}} </td>
             </ng-container>
           
 
             <ng-container matColumnDef="protein">
               <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by protein" class="header-cell"> Protein </th>
-              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.protein) +' g'}} </td>
+              <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.protein, element.servingSize) +' g'}} </td>
             </ng-container>
           
             
             <ng-container matColumnDef="fat">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by fat" class="header-cell"> Fat </th>
-                <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.fat) +' g'}} </td>
+                <td mat-cell *matCellDef="let element" class="table-cell"> {{computeNumber(element.fat, element.servingSize) +' g'}} </td>
             </ng-container>
 
             <ng-container matColumnDef="servingSize">

@@ -10,6 +10,7 @@ import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
 import { RecipeService } from 'src/app/services/recipe.service';
 import { RecipeDialogComponent } from '../recipe-dialog/recipe-dialog.component';
 import { animate, state, style, trigger } from '@angular/animations';
+import { Recipe, RecipeIngredientModel } from '../interfaces';
 
 @Component({
   selector: 'app-recipes',
@@ -27,7 +28,7 @@ import { animate, state, style, trigger } from '@angular/animations';
 export class RecipesComponent implements OnInit {
 
   public recipesData !: MatTableDataSource<Recipe>;
-  public ingredientsData !: MatTableDataSource<RecipeIngredient>;
+  public ingredientsData !: MatTableDataSource<RecipeIngredientModel>;
   public displayedColumns = ['name', 'calsperg', 'carbs', 'protein', 'fat', 'servingSize', 'numberOfIngredients' ];
   public ingredientDisplayedColumns = ['name', 'grams'];
   public expandedElement: Recipe | null = null;
@@ -53,9 +54,10 @@ export class RecipesComponent implements OnInit {
       {
         next: (result) => {
           this.recipesData = new MatTableDataSource<Recipe>(result);
-          this.ingredientsData = new MatTableDataSource<RecipeIngredient>(result.ingredients);
+          this.ingredientsData = new MatTableDataSource<RecipeIngredientModel>(result.ingredients);
           this.recipesData.paginator = this.paginator;
           this.recipesData.sort = this.sort;
+          
         },
         error: (error) => {
           console.error(error);
@@ -67,25 +69,6 @@ export class RecipesComponent implements OnInit {
 
   public computeNumber(value : number, multiplier : number = 100) {
     return Math.ceil(value * multiplier);
-  }
- 
-  public multiplyValues(recipe : Recipe) : Recipe {
-    
-    var modifiedRecipe = {
-      id: recipe.id,
-      userId: recipe.userId,
-      name: recipe.name,
-      calsperg: recipe.calsperg * 100,
-      carbs: recipe.carbs * 100,
-      protein: recipe.protein * 100,
-      fat: recipe.fat * 100,
-      numberOfIngredients: recipe.numberOfIngredients,
-      servingSize: recipe.servingSize,
-      ingredients: recipe.ingredients,
-    
-    } 
-
-    return modifiedRecipe;
   }
 
   public search(input: string) {
@@ -138,6 +121,7 @@ export class RecipesComponent implements OnInit {
   }
 
   public openEditDialog(recipe : Recipe) {
+    console.log(recipe);
     const dialogRef =
     this.dialog.open(RecipeDialogComponent, 
       {
@@ -168,6 +152,7 @@ export class RecipesComponent implements OnInit {
   }
 
   public openAddDialog() {
+    
     const dialogRef =
     this.dialog.open(RecipeDialogComponent, 
       {
@@ -199,22 +184,3 @@ export class RecipesComponent implements OnInit {
 
 }
 
-export interface Recipe {
-  id: string;
-  name: string;
-  calsperg: number;
-  carbs: number;
-  protein: number;
-  fat: number;
-  userId: string;
-  numberOfIngredients: number;
-  servingSize: number;
-  ingredients: [RecipeIngredient]
-}
-
-export interface RecipeIngredient {
-  grams: number;
-  ingredientId: string;
-  name: string;
-  
-}

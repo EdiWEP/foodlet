@@ -14,7 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
 import { RecipeingredientComponent } from './recipeingredient/recipeingredient.component';
 import { RecipeIngredientDialogComponent } from './recipe-ingredient-dialog/recipe-ingredient-dialog.component';
-
+import { Recipe, RecipeModel, RecipeIngredient, RecipeIngredientModel, Ingredient } from './interfaces';
 
 @NgModule({
   declarations: [
@@ -27,13 +27,14 @@ import { RecipeIngredientDialogComponent } from './recipe-ingredient-dialog/reci
     ProfileComponent,
     RecipeDialogComponent,
     RecipeingredientComponent,
-    RecipeIngredientDialogComponent
+    RecipeIngredientDialogComponent,
+
   ],
   imports: [
     CommonModule,
     MainRoutingModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class MainModule { }
