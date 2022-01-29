@@ -81,7 +81,8 @@ export class IngredientDialogComponent implements OnInit {
         this.ingredientService.addIngredient(ingredient).subscribe({
           next: (result) => {
             
-            this.dialogRef.close("success");
+            ingredient.id = result;
+            this.dialogRef.close(ingredient);
           },
           error: (error) => {
             console.error(error);
@@ -93,7 +94,7 @@ export class IngredientDialogComponent implements OnInit {
         this.ingredientService.updateIngredient(ingredient).subscribe({
           next: (result) => {
             
-            this.dialogRef.close("success");
+            this.dialogRef.close(ingredient);
           },
           error: (error) => {
             console.error(error);

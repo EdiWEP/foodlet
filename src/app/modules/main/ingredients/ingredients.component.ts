@@ -22,7 +22,7 @@ export class IngredientsComponent implements OnInit {
  
   public ingredientsData !: MatTableDataSource<Ingredient>;
   public displayedColumns = ['name', 'calsperg', 'carbs', 'protein', 'fat']
-
+  private lastFilter : string = '';
 
   @ViewChild(MatPaginator,{static: false}) paginator!: MatPaginator;
   @ViewChild(MatSort,{static: false}) sort!: MatSort;
@@ -66,7 +66,7 @@ export class IngredientsComponent implements OnInit {
                 panelClass: ['snackbar-success'],
                 data: "Successfully deleted the ingredient"
               });
-              this.getIngredients();
+              this.removeIngredient(ingredientId);
             },
             error: (error) => {
               console.error(error);
@@ -98,21 +98,22 @@ export class IngredientsComponent implements OnInit {
         }
       });
 
-      dialogRef.afterClosed().subscribe( result => {
-        if(result == "success") {
-          //this.ingredientsData.data.push()
-          this.snackBar.openFromComponent(SnackbarComponent, 
-            { 
-              duration: 4000, 
-              panelClass: ['snackbar-success'], 
-              data: "Succesfully modified the ingredient!" 
-           }
-          );
-          this.getIngredients();
+    dialogRef.afterClosed().subscribe( result => {
+      if(result) {
+        //this.ingredientsData.data.push()
+        this.snackBar.openFromComponent(SnackbarComponent, 
+          { 
+            duration: 4000, 
+            panelClass: ['snackbar-success'], 
+            data: "Succesfully modified the ingredient!" 
+          }
+        );
+        this.updateIngredient(result, ingredient);
 
-        }
-      })
+      }
+    });
   }
+
   public openAddDialog() {
     const dialogRef =
     this.dialog.open(IngredientDialogComponent, 
@@ -126,21 +127,21 @@ export class IngredientsComponent implements OnInit {
         }
       });
     
-      dialogRef.afterClosed().subscribe( result => {
-        if(result == "success") {
-          //this.ingredientsData.data.push()
-          this.snackBar.openFromComponent(SnackbarComponent, 
-            { 
-              duration: 4000, 
-              panelClass: ['snackbar-success'], 
-              data: "Succesfully added a new ingredient!" 
-           }
-          );
-          
-          this.getIngredients();
-        }
+    dialogRef.afterClosed().subscribe( result => {
+      if(result) {
+        //this.ingredientsData.data.push()
+        this.snackBar.openFromComponent(SnackbarComponent, 
+          { 
+            duration: 4000, 
+            panelClass: ['snackbar-success'], 
+            data: "Succesfully added a new ingredient!" 
+          }
+        );
+        
+        this.addIngredient(result);
+      }
 
-      });
+    });
   }
 
   private getIngredients() {
@@ -158,37 +159,58 @@ export class IngredientsComponent implements OnInit {
     );
   }
   
+  public addIngredient(ingredient : Ingredient) {
+    this.ingredientsData.data.push(ingredient);
+    this.refreshTableData();
+  }
+  
+  public removeIngredient(id : string) {
+    this.ingredientsData.data = this.ingredientsData.data.filter((ingredient) => ingredient.id != id);
+    this.refreshTableData();
+  }
+  
+  public updateIngredient(ingredient : Ingredient, oldIngredient : Ingredient) {
+    var index = this.ingredientsData.data.indexOf(oldIngredient);
+    this.ingredientsData.data.splice(index, 1, ingredient);
+    this.refreshTableData();
+  }
+  
+  public checkSameId(ingredientUserId : string) : boolean {
+    return (localStorage.getItem('Role') == 'Admin' || localStorage.getItem('UserId') == ingredientUserId);
+  }
+  
+  
   public search(input: string) {
     input.trim().toLowerCase();
+    this.lastFilter = input;
     this.ingredientsData.filter = input;
   }
 
   public computeNumber(value : number, multiplier : number = 100) {
     return Math.ceil(value * multiplier);
   }
- 
+
   public multiplyValues(ingredient : Ingredient) : Ingredient {
     
     var modifiedIngredient = {
       id: ingredient.id,
       userId: ingredient.userId,
       name: ingredient.name,
-      calsperg: ingredient.calsperg * 100,
-      carbs: ingredient.carbs * 100,
-      protein: ingredient.protein * 100,
-      fat: ingredient.fat * 100,
+      calsperg: Math.ceil(ingredient.calsperg * 100),
+      carbs: Math.ceil(ingredient.carbs * 100),
+      protein: Math.ceil(ingredient.protein * 100),
+      fat: Math.ceil(ingredient.fat * 100),
     
     } 
 
     return modifiedIngredient;
   }
 
-  public checkSameId(ingredientUserId : string) : boolean {
-    return (localStorage.getItem('Role') == 'Admin' || localStorage.getItem('UserId') == ingredientUserId);
+  private refreshTableData() {
+    this.ingredientsData.sort = this.sort;
+    this.ingredientsData.paginator = this.paginator;
+    this.ingredientsData.filter = this.lastFilter;
   }
-
-  
-  
 }
 
 

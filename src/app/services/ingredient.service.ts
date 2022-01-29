@@ -23,6 +23,10 @@ export class IngredientService {
     return this.http.get(this.apiUrl + 'all', {headers: this.authService.getAuthHeaders()});
   }
 
+  public getIngredient(id: string) : Observable<any> {
+    return this.http.get(this.apiUrl + 'id/' + id, {headers: this.authService.getAuthHeaders()});
+  }
+  
   public addIngredient(ingredient : Ingredient) : Observable<any> {
 
     //return this.http.post(this.apiUrl + 'add', { body: {ingredient}, headers: this.authService.getAuthHeaders()});

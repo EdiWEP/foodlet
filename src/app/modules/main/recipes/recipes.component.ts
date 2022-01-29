@@ -11,6 +11,8 @@ import { RecipeService } from 'src/app/services/recipe.service';
 import { RecipeDialogComponent } from '../recipe-dialog/recipe-dialog.component';
 import { animate, state, style, trigger } from '@angular/animations';
 import { Recipe, RecipeIngredientModel } from '../interfaces';
+import { DataService } from 'src/app/services/data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-recipes',
@@ -28,10 +30,11 @@ import { Recipe, RecipeIngredientModel } from '../interfaces';
 export class RecipesComponent implements OnInit {
 
   public recipesData !: MatTableDataSource<Recipe>;
-  public ingredientsData !: MatTableDataSource<RecipeIngredientModel>;
   public displayedColumns = ['name', 'calsperg', 'carbs', 'protein', 'fat', 'servingSize', 'numberOfIngredients' ];
   public ingredientDisplayedColumns = ['name', 'grams'];
   public expandedElement: Recipe | null = null;
+
+  private lastFilter : string = '';
 
   @ViewChild(MatPaginator,{static: false}) paginator!: MatPaginator;
   @ViewChild(MatSort,{static: false}) sort!: MatSort;
@@ -43,17 +46,17 @@ export class RecipesComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.getRecipes();
+    
+   this.getRecipes();
 
   }
 
-
   private getRecipes() {
+    
     this.recipeService.getRecipes().subscribe(
       {
         next: (result) => {
           this.recipesData = new MatTableDataSource<Recipe>(result);
-          this.ingredientsData = new MatTableDataSource<RecipeIngredientModel>(result.ingredients);
           this.recipesData.paginator = this.paginator;
           this.recipesData.sort = this.sort;
           
@@ -72,6 +75,7 @@ export class RecipesComponent implements OnInit {
 
   public search(input: string) {
     input.trim().toLowerCase();
+    this.lastFilter = input;
     this.recipesData.filter = input;
   }
 
@@ -101,7 +105,7 @@ export class RecipesComponent implements OnInit {
                 panelClass: ['snackbar-success'],
                 data: "Successfully deleted the recipe"
               });
-              this.getRecipes();
+              this.removeRecipe(recipeId);
             },
             error: (error) => {
               console.error(error);
@@ -120,7 +124,6 @@ export class RecipesComponent implements OnInit {
   }
 
   public openEditDialog(recipe : Recipe) {
-    console.log(recipe);
     const dialogRef =
     this.dialog.open(RecipeDialogComponent, 
       {
@@ -135,7 +138,7 @@ export class RecipesComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe( result => {
-        if(result == "success") {
+        if(result) {
           //this.recipesData.data.push()
           this.snackBar.openFromComponent(SnackbarComponent, 
             { 
@@ -144,7 +147,15 @@ export class RecipesComponent implements OnInit {
               data: "Succesfully modified the recipe!" 
            }
           );
-          this.getRecipes();
+
+          this.recipeService.getRecipe(recipe.id).subscribe({
+            next: (updated) => {
+              this.updateRecipe(updated,recipe);
+            },
+            error: (error) => {
+              console.error(error);
+            }
+          });
 
         }
       })
@@ -164,21 +175,50 @@ export class RecipesComponent implements OnInit {
         }
       });
     
-      dialogRef.afterClosed().subscribe( result => {
-        if(result == "success") {
-          //this.RecipesData.data.push()
-          this.snackBar.openFromComponent(SnackbarComponent, 
-            { 
-              duration: 4000, 
-              panelClass: ['snackbar-success'], 
-              data: "Succesfully added a new recipe!" 
-           }
-          );
-          
-          this.getRecipes();
-        }
+    dialogRef.afterClosed().subscribe( result => {
+      if(result) {
+        //this.RecipesData.data.push()
+        this.snackBar.openFromComponent(SnackbarComponent, 
+          { 
+            duration: 4000, 
+            panelClass: ['snackbar-success'], 
+            data: "Succesfully added a new recipe!" 
+          }
+        );
+        
+        this.recipeService.getRecipe(result).subscribe({
+          next: (recipe) => {
+            this.addRecipe(recipe);
+          },
+          error: (error) => {
+            console.error(error);
+          }
+        });
+      }
+    });
 
-      });
+  }
+
+  public addRecipe(recipe : Recipe) {
+    this.recipesData.data.push(recipe);
+    this.refreshTableData();
+  }
+  
+  public removeRecipe(id : string) {
+    this.recipesData.data = this.recipesData.data.filter((recipe) => recipe.id != id);
+    this.refreshTableData();
+  }
+  
+  public updateRecipe(recipe : Recipe, oldrecipe : Recipe) {
+    var index = this.recipesData.data.indexOf(oldrecipe);
+    this.recipesData.data.splice(index, 1, recipe);
+    this.refreshTableData();
+  }
+
+  private refreshTableData() {
+    this.recipesData.sort = this.sort;
+    this.recipesData.paginator = this.paginator;
+    this.recipesData.filter = this.lastFilter;
   }
 
 }

@@ -23,8 +23,11 @@ export class RecipeService {
     return this.http.get(this.apiUrl + 'all', {headers: this.authService.getAuthHeaders()});
   }
 
+  public getRecipe(id: string) : Observable<any> {
+    return this.http.get(this.apiUrl + 'id/' + id, {headers: this.authService.getAuthHeaders()});
+  }
+
   public addRecipe(recipe : RecipeModel) : Observable<any> {
-    console.log(recipe);
     //return this.http.post(this.apiUrl + 'add', { body: {recipe}, headers: this.authService.getAuthHeaders()});
     return this.http.post(this.apiUrl + 'add', recipe, {headers:this.authService.getAuthHeaders(), responseType: 'text'});
   }
@@ -36,7 +39,6 @@ export class RecipeService {
   
   public updateRecipe(recipe: RecipeModel) : Observable<any> {
 
-    console.log(recipe);
     return this.http.put(this.apiUrl + 'update', recipe, {headers: this.authService.getAuthHeaders(), responseType: 'text'});
   }
 }

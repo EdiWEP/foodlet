@@ -36,9 +36,9 @@
 
                             <div class="name-cell-buttons">
                                 
-                                <mat-icon (click)="openDeleteDialog(element.id)">delete</mat-icon>
+                                <mat-icon (click)="openDeleteDialog(element.id);expandedElement = expandedElement === element ? null : element">delete</mat-icon>
                                 <mat-divider vertical class="button-divider"></mat-divider>
-                                <mat-icon (click)="openEditDialog(element)">edit</mat-icon>
+                                <mat-icon (click)="openEditDialog(element);expandedElement = expandedElement === element ? null : element">edit</mat-icon>
                                 
                             </div>
                         </ng-template>
@@ -98,12 +98,12 @@
                         
                         <ng-container matColumnDef="name">
                             <th mat-header-cell *matHeaderCellDef class="ingredient-header-cell"> Ingredient </th>
-                            <td mat-cell *matCellDef="let ingredient" class="ingredient-table-cell"> {{ingredient.name}} </td>
+                            <td mat-cell *matCellDef="let ingredient" class="ingredient-table-cell"> {{ingredient.name | caps}} </td>
                         </ng-container>
                         
                         <ng-container matColumnDef="grams">
                             <th mat-header-cell *matHeaderCellDef class="ingredient-header-cell"> Grams </th>
-                            <td mat-cell *matCellDef="let ingredient" class="ingredient-table-cell"> {{ingredient.grams}} </td>
+                            <td mat-cell *matCellDef="let ingredient" class="ingredient-table-cell"> {{ingredient.grams | gramspipe}} </td>
                         </ng-container>
                         
                         <tr mat-header-row *matHeaderRowDef="ingredientDisplayedColumns sticky: true" class="ingredient-header-row" ></tr>

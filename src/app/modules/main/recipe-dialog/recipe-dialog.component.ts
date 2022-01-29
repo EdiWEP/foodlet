@@ -101,8 +101,8 @@ export class RecipeDialogComponent implements OnInit {
         if(this.data.action == 'add') {
 
           this.recipeService.addRecipe(recipe).subscribe({
-            next: (result) => {
-              this.dialogRef.close("success");
+            next: (newRecipeId) => {
+              this.dialogRef.close(newRecipeId);
             },
             error: (error) => {
               console.error(error);
@@ -112,8 +112,7 @@ export class RecipeDialogComponent implements OnInit {
           }); 
         }
         else {
-          console.log(recipe);
-          console.log(this.recipeIngredients);
+          
           recipe.id = this.data.formValue.id;
 
           this.recipeService.updateRecipe(recipe).subscribe({

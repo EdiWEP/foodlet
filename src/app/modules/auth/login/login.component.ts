@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private dataService: DataService
   ) { 
       
   }
@@ -35,10 +37,14 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe(
       {
         next: (result) => {
-          console.log(result);
+          
+          var username = this.loginForm.value.username;
           localStorage.setItem('Token', result.token);
           localStorage.setItem('UserId', result.userId);
           localStorage.setItem('Role', result.role);
+          if(!username.includes('@') && !username.includes('.')) {
+            this.dataService.setUsername(username);
+          } 
           this.router.navigate(['']);
         },
         error: (error) => {
