@@ -45,6 +45,7 @@ export class AuthService {
   }
 
   public deleteStorage() {
+    localStorage.removeItem('Username');
     localStorage.removeItem('Role');
     localStorage.removeItem('Token');
     localStorage.removeItem('UserId');

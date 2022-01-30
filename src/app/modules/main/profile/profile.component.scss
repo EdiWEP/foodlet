@@ -46,9 +46,35 @@
         width: 100%;
         height: 80%;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+
+        .message-container {
+            height: 5%;
+            margin-top: 5px;
+            color:orangered;
+            
+            font-size: 18px;
+        }
+        .search-container {
+            display: flex;
+            width: 30%;
+            justify-content: space-around;
+            align-items: center;
+
+            
+            ::ng-deep .mat-form-field-wrapper{
+                margin: 0 !important;
+                padding: 0 !important;
+              }
+
+            
+            button {
+                width: 20%;
+                height: 70%;
+            }
+        }
 
         .profile-container {
 
@@ -113,6 +139,7 @@
                         margin-top:auto;
                     }
                 }
+
             }
            
         }

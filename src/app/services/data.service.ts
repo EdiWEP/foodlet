@@ -17,7 +17,12 @@ export class DataService {
   constructor(
     private ingredService : IngredientService,
     private recipeService : RecipeService,
-  ) { }
+  ) {
+    if (!this.usernameSource.getValue()) {
+      console.log('h');
+      this.usernameSource.next(localStorage.getItem('Username')!);
+    }
+   }
   
   public setUsername(username: string) {
     this.usernameSource.next(username);

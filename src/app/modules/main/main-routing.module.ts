@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { MainComponent } from './main/main.component';
 import { ProfileComponent } from './profile/profile.component';
+import { RecipeInfoComponent } from './recipe-info/recipe-info.component';
 import { RecipesComponent } from './recipes/recipes.component';
 
 const routes: Routes = [
@@ -30,9 +31,9 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
       {
-        path: 'profile',
+        path: 'profile/:username',
         component: ProfileComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard]
       }
 
     ]

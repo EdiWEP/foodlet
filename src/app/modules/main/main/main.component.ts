@@ -13,7 +13,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class MainComponent implements OnInit {
 
   public sidenavActive: boolean = false;
-  
+  public currentUserName: string = '';
+
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -22,12 +23,13 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.currentUserName = localStorage.getItem('Username')!;
+
     if(this.router.url == '/') {
 
       this.router.navigate(['/home'])
     }
   }
-
   
   public verifyLoggedIn(): boolean {
     return localStorage.getItem('Token') != null;

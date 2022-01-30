@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('Role', result.role);
           if(!username.includes('@') && !username.includes('.')) {
             this.dataService.setUsername(username);
+            localStorage.setItem('Username', username);
           } 
           this.router.navigate(['']);
         },

@@ -18,10 +18,10 @@ export class ProfileService {
 
     }
 
-  public getProfile(userId : string) : Observable<any> {
+  public getProfile(username : string) : Observable<any> {
     
     return this.http.get(
-      this.apiUrl + 'profile/' + localStorage.getItem('UserId'),
+      this.apiUrl + 'profile/' + username,
         {headers: this.authService.getAuthHeaders()});
   }
   

@@ -8,7 +8,24 @@
 
     <div class="profile">
 
-       <mat-card class="profile-container">
+        <div class="search-container">
+
+            <mat-form-field appearance="outline" id="search" >
+                
+                <mat-label>Search for a user profile</mat-label>
+                <input type="search" class="search-bar" matInput placeholder="Username" #username>
+                
+                <span matSuffix><mat-icon>search</mat-icon></span>
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="searchProfile(username.value)">Search</button>
+        </div>
+    
+        <div class="message-container">
+            <p id="message">
+                
+            </p>
+        </div>
+        <mat-card class="profile-container">
            
            
            <mat-card class="profile-card">
