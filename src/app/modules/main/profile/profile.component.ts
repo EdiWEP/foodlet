@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
     phoneNumber: '',
   };
 
+  public currentProfile: string = '';
 
   constructor(
     private profileService : ProfileService,
@@ -30,17 +31,20 @@ export class ProfileComponent implements OnInit {
   }
 
 
+  public checkSameUser() : boolean {
+    return this.currentProfile == localStorage.getItem('Username')!;
+  }
+
   public getCurrentProfile() {
-    var currentProfile = '';
     this.route.params.subscribe(params => {
-      currentProfile = params['username']
+      this.currentProfile = params['username']
       
     });
     
-    this.profileService.getProfile(currentProfile).subscribe({
+    this.profileService.getProfile(this.currentProfile).subscribe({
       next: (result) => {
         this.data = result;
-        console.log(currentProfile);
+        console.log(this.currentProfile);
       },
       error: (error) => {
         console.error(error);

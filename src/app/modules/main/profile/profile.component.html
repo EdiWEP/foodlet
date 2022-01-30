@@ -53,7 +53,7 @@
                     </div>
                 </mat-card>
 
-                <button color="primary" mat-raised-button class="edit-button">
+                <button *ngIf="checkSameUser()" color="primary" mat-raised-button class="edit-button">
                     <mat-icon>edit</mat-icon>
                     Edit
                 </button>
