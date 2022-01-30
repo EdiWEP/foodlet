@@ -115,11 +115,12 @@ namespace FoodletAPI.Controllers
             if (!await _tokenManager.VerifyRequestedUser(Authorization, model.UserId))
             {
                 return StatusCode(403);
-            }
 
-            if (await _manager.AddIngredient(model))
+            }
+            string result = await _manager.AddIngredient(model);
+            if (result != null)
             {
-                return Ok("Successfuly added the new ingredient");
+                return Ok(result);
             }
             else
             {
@@ -132,10 +133,12 @@ namespace FoodletAPI.Controllers
         public async Task<IActionResult> AddIngredient([FromBody] IngredientModel model)
         {
 
-            if(await _manager.AddIngredient(model))
+            string result = await _manager.AddIngredient(model);
+            
+            if (result != null)
             {
 
-                return Ok("Successfuly added the new ingredient");
+                return Ok(result);
             }
             else
             {

@@ -72,9 +72,10 @@ namespace FoodletAPI.Controllers
                 return StatusCode(403);
             }
 
-            if(await _manager.AddRecipe(addModel))
+            string result = await _manager.AddRecipe(addModel);
+            if (result != null)
             {
-                return Ok("Successfully added the new recipe");
+                return Ok(result);
             }
             else
             {

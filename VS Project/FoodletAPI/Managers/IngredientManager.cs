@@ -32,12 +32,19 @@ namespace FoodletAPI.Managers
             return ingredients;
         }
 
-        public async Task<bool> AddIngredient(IngredientModel newModel)
+        public async Task<string> AddIngredient(IngredientModel newModel)
         {
             var newIngredient = new Ingredient(newModel);
 
             _repo.Create(newIngredient);
-            return await _repo.SaveChanges();
+            if(await _repo.SaveChanges())
+            {
+                return newIngredient.Id;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public async Task<bool> AddListOfIngredients(List<IngredientModel> ingredientModels)

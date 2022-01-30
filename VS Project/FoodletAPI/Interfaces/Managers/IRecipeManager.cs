@@ -17,7 +17,7 @@ namespace FoodletAPI.Interfaces.Managers
 
         Task<string> GetUserId(string id);
 
-        Task<bool> AddRecipe(AddRecipeModel addModel);
+        Task<string> AddRecipe(AddRecipeModel addModel);
 
         Task<int> Delete(string id);
 

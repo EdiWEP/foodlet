@@ -21,7 +21,7 @@ namespace FoodletAPI.Interfaces.Managers
         Task<List<IngredientWithIdModel>> GetByUserId(string userId);
         Task<List<IngredientWithIdModel>> GetAllDefault();
 
-        Task<bool> AddIngredient(IngredientModel addModel);
+        Task<string> AddIngredient(IngredientModel addModel);
 
         Task<int> Delete(string id, string userId);
 

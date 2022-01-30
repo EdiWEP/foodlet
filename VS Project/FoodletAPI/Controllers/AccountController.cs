@@ -68,7 +68,7 @@ namespace FoodletAPI.Controllers
 
         [HttpGet("profile/{user}")]
         [Authorize(Policy = "User")]
-        public async Task<IActionResult> GetProfileByUserId([FromRoute] string user)
+        public async Task<IActionResult> GetProfileByUsername([FromRoute] string user)
         {
 
             //var profile = await _manager.GetProfileByUsername(user);
@@ -79,7 +79,7 @@ namespace FoodletAPI.Controllers
             //}
             //else
             //{
-                return Ok(await _manager.GetProfileByUserId(user));
+                return Ok(await _manager.GetProfileByUsername(user));
             //}
         }
 

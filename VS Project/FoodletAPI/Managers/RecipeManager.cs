@@ -72,10 +72,9 @@ namespace FoodletAPI.Managers
             return entity.UserId;
         }
 
-        public async Task<bool> AddRecipe(AddRecipeModel addModel) 
+        public async Task<string> AddRecipe(AddRecipeModel addModel) 
         {
             var newRecipe = await CreateRecipe(addModel);
-
             
             var newIngredients = new List<RecipeIngredient>();
 
@@ -86,8 +85,15 @@ namespace FoodletAPI.Managers
 
             _repo.Create(newRecipe);
             _repo.AddRecipeIngredients(newIngredients);
+            if(await _repo.SaveChanges())
+            {
+                return newRecipe.Id;
+            }
+            else
+            {
+                return null;
+            }
 
-            return await _repo.SaveChanges();
         }
 
         public async Task<int> Delete(string id)
