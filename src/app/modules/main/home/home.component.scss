@@ -1,0 +1,111 @@
+.home-container {
+    // font-family: 'Permanent Marker', cursive;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        
+    color:#FFDC5E;
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-between;
+    //background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1920' height='1080' preserveAspectRatio='none' viewBox='0 0 1920 1080'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1135%26quot%3b)' fill='none'%3e%3crect width='1920' height='1080' x='0' y='0' fill='rgba(129%2c 18%2c 178%2c 1)'%3e%3c/rect%3e%3cpath d='M 0%2c129 C 128%2c158 384%2c267.2 640%2c274 C 896%2c280.8 1024%2c165.2 1280%2c163 C 1536%2c160.8 1792%2c243 1920%2c263L1920 1080L0 1080z' fill='rgba(160%2c 46%2c 205%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c544 C 96%2c535.2 288%2c499.4 480%2c500 C 672%2c500.6 768%2c553.8 960%2c547 C 1152%2c540.2 1248%2c459.8 1440%2c466 C 1632%2c472.2 1824%2c555.6 1920%2c578L1920 1080L0 1080z' fill='rgba(161%2c 68%2c 198%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c1040 C 128%2c984 384%2c776.4 640%2c760 C 896%2c743.6 1024%2c943.4 1280%2c958 C 1536%2c972.6 1792%2c858 1920%2c833L1920 1080L0 1080z' fill='rgba(141%2c 20%2c 198%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1135'%3e%3crect width='1920' height='1080' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+    //background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1920' height='1080' preserveAspectRatio='none' viewBox='0 0 1920 1080'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1209%26quot%3b)' fill='none'%3e%3crect width='1920' height='1080' x='0' y='0' fill='rgba(141%2c 54%2c 179%2c 1)'%3e%3c/rect%3e%3cpath d='M 0%2c445 C 128%2c401.4 384%2c244.4 640%2c227 C 896%2c209.6 1024%2c352.4 1280%2c358 C 1536%2c363.6 1792%2c275.6 1920%2c255L1920 1080L0 1080z' fill='rgba(239%2c 239%2c 239%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c764 C 48%2c786.4 144%2c872.4 240%2c876 C 336%2c879.6 384%2c747 480%2c782 C 576%2c817 624%2c1085 720%2c1051 C 816%2c1017 864%2c626.4 960%2c612 C 1056%2c597.6 1104%2c969.2 1200%2c979 C 1296%2c988.8 1344%2c666.8 1440%2c661 C 1536%2c655.2 1584%2c934.8 1680%2c950 C 1776%2c965.2 1872%2c779.6 1920%2c737L1920 1080L0 1080z' fill='rgba(239%2c 239%2c 239%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1209'%3e%3crect width='1920' height='1080' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+    //background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1920' height='1080' preserveAspectRatio='none' viewBox='0 0 1920 1080'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1262%26quot%3b)' fill='none'%3e%3crect width='1920' height='1080' x='0' y='0' fill='rgba(102%2c 51%2c 153%2c 1)'%3e%3c/rect%3e%3cpath d='M 0%2c242 C 128%2c209.6 384%2c83.2 640%2c80 C 896%2c76.8 1024%2c209.2 1280%2c226 C 1536%2c242.8 1792%2c176.4 1920%2c164L1920 1080L0 1080z' fill='rgba(150%2c 105%2c 194%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c587 C 128%2c567 384%2c460.8 640%2c487 C 896%2c513.2 1024%2c714.4 1280%2c718 C 1536%2c721.6 1792%2c547.6 1920%2c505L1920 1080L0 1080z' fill='rgba(239%2c 239%2c 239%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c888 C 48%2c920 144%2c1055.8 240%2c1048 C 336%2c1040.2 384%2c866.6 480%2c849 C 576%2c831.4 624%2c954 720%2c960 C 816%2c966 864%2c870.4 960%2c879 C 1056%2c887.6 1104%2c1009.2 1200%2c1003 C 1296%2c996.8 1344%2c845 1440%2c848 C 1536%2c851 1584%2c1033.4 1680%2c1018 C 1776%2c1002.6 1872%2c820.4 1920%2c771L1920 1080L0 1080z' fill='rgba(239%2c 239%2c 239%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1262'%3e%3crect width='1920' height='1080' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+    
+    //background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1920' height='1080' preserveAspectRatio='none' viewBox='0 0 1920 1080'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1271%26quot%3b)' fill='none'%3e%3crect width='1920' height='1080' x='0' y='0' fill='rgba(102%2c 51%2c 153%2c 1)'%3e%3c/rect%3e%3cpath d='M 0%2c242 C 128%2c209.6 384%2c83.2 640%2c80 C 896%2c76.8 1024%2c209.2 1280%2c226 C 1536%2c242.8 1792%2c176.4 1920%2c164L1920 1080L0 1080z' fill='rgba(169%2c 123%2c 212%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c587 C 128%2c567 384%2c460.8 640%2c487 C 896%2c513.2 1024%2c714.4 1280%2c718 C 1536%2c721.6 1792%2c547.6 1920%2c505L1920 1080L0 1080z' fill='rgba(181%2c 148%2c 212%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c888 C 48%2c920 144%2c1055.8 240%2c1048 C 336%2c1040.2 384%2c866.6 480%2c849 C 576%2c831.4 624%2c954 720%2c960 C 816%2c966 864%2c870.4 960%2c879 C 1056%2c887.6 1104%2c1009.2 1200%2c1003 C 1296%2c996.8 1344%2c845 1440%2c848 C 1536%2c851 1584%2c1033.4 1680%2c1018 C 1776%2c1002.6 1872%2c820.4 1920%2c771L1920 1080L0 1080z' fill='rgba(181%2c 148%2c 212%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1271'%3e%3crect width='1920' height='1080' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+    background-image: url('./layered-waves-haikei.svg');
+
+    .welcome-message-container {
+        width: 100%;
+        height: 15%; 
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: flex-start;
+
+        .welcome-message {
+            width: 100%;
+            height: 100%;
+            //color: #C1CEFE;
+            color:#FFDC5E;
+
+            padding-right: 30px;
+            font-weight: bold;
+            .title {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+
+                height: 50%;
+                text-align: right;
+                padding-bottom: 20px;
+    
+                font-size: 72px;
+                
+
+            }
+
+            .subtitle {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                
+                padding-top: 20px;
+                text-align: right;
+                height: 40%;
+                font-size: 56px;
+            }
+        }
+    }
+
+    .overview-container {
+        width: 100%;
+        height: 85%;
+        display:grid;
+        grid-template-rows: 2fr 2fr 2fr 1fr;
+        grid-template-columns: 4fr 3fr;
+
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color:#FFFFFF;
+        font-weight: bold;
+        font-size: 40px;
+        line-height: 45px;
+
+        .foodlet-description {
+ 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 90%;
+            //color:#FCFF4B;
+            padding-left: 40px;
+            grid-column: 1;
+            grid-row:2;
+
+            font-size: 40px;
+            line-height: 45px;
+        }
+
+        .features-description {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            grid-row:3;
+            padding-left: 40px;
+            grid-column: 1;
+        }
+
+        .signup-description {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            line-height: 45px;
+            padding-left: 40px;
+            grid-row: 4;
+            grid-column: 1;
+        }
+    }
+}

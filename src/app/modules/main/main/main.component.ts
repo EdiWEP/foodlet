@@ -4,6 +4,7 @@ import { MaterialModule } from '../../material/material.module';
 import { NgIf } from '@angular/common';
 import { filter } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-main',
@@ -18,6 +19,7 @@ export class MainComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
+    private dataService : DataService
   ) { 
     
   }
@@ -44,6 +46,8 @@ export class MainComponent implements OnInit {
     localStorage.removeItem('Role');
     localStorage.removeItem('Token');
     localStorage.removeItem('UserId');
+    localStorage.removeItem('Username');
+    this.dataService.setUsername('');
   }
 
   public toggleSidenav() {

@@ -24,6 +24,9 @@ export class HomeComponent implements OnInit {
     this.usernameSubscription = this.dataService.username.subscribe(username => this.username = username);
   }
 
+  checkLoggedIn() : boolean {
+    return localStorage.getItem('Token') == null;
+  }
 
   
 }

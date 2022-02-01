@@ -1,1 +1,29 @@
-<h1>Hello {{username}}</h1>
+<div class="home-container">
+
+    <div class="welcome-message-container">
+        <div class="welcome-message">
+            <div class="title">
+                Hello {{username}}
+            </div>
+            <div class="subtitle">
+                Welcome to Foodlet
+            </div>
+        </div>
+    </div>
+
+    <div class="overview-container">
+
+        <div class="foodlet-description">
+            Foodlet is a tool for checking & saving the nutritional values of foods in order to help maintain a balanced diet
+
+        </div>
+
+        <div class="features-description">
+            We have a default list of ingredients, but with an account you can also add your own ingredients and recipes
+        </div>
+
+        <div *ngIf="checkLoggedIn()" class="signup-description">
+            Click the login button at the top to Log in or Sign Up
+        </div>
+    </div>
+</div>
