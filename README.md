@@ -1,5 +1,6 @@
 # Foodlet 
 Foodlet is a web application for tracking the nutritional values of foods, built with **ASP.NET Core** and **Angular** 
+
 Users can save their own ingredients and recipies, along with their nutritional stats
 
 
