@@ -1,27 +1,29 @@
-# Foodlet
+# Foodlet 
+Foodlet is a web application for tracking the nutritional values of foods, built with **ASP.NET Core** and **Angular** 
+Users can save their own ingredients and recipies, along with their nutritional stats
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.
 
-## Development server
+## Implementation details
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- **RESTful API** in the back-end, developed using the **repository pattern**. You can find the source code [here](https://github.com/EdiWEP/foodlet-api/tree/main/VS%20Project/FoodletAPI) 
+- Used **Entity Framework** to create and manage a Code-First database
+- Secure authentication using **JWT** and **ASP.NET Core Identity**
+- UI was developed using **Angular Material** and SCSS
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Screenshots
 
-## Build
+### Authentication
+![Login screenshot](https://i.imgur.com/XRNhWQh.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Recipes
+![Recipe page screenshot](https://i.imgur.com/btwiCCW.png)
 
-## Running unit tests
+### Adding a recipe
+![Adding a recipe screenshot](https://i.imgur.com/CXfBazD.png)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Ingredients
+![Ingredients page screenshot](https://i.imgur.com/IEXfjQw.png)
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Home page
+![Home page screenshot](https://i.imgur.com/iigbSiV.png)
